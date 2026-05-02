@@ -13,6 +13,8 @@ const CLICK_THRESHOLD := 0.15
 
 static var _cursor_owner: Node = null
 
+var _ticker: HouseStatsTicker = null
+
 var _is_holding := false
 var _hold_timer := 0.0
 var _hold_indicator: HoldProgressIndicator
@@ -72,9 +74,10 @@ func _process(delta: float) -> void:
 		_hold_indicator.show()
 		_hold_indicator.progress = minf((_hold_timer - HOLD_SHOW_DELAY) / (HOLD_DURATION - HOLD_SHOW_DELAY), 1.0)
 	if _hold_timer >= HOLD_DURATION:
-		if _current_state < _part_data.stat_change.size() - 1:
-			_current_state += 1
-			_update_tooltip()
+		if _current_state < _part_data.stat_change.size() - 1 and _ticker != null:
+			if _ticker.try_spend_food(2.0):
+				_current_state += 1
+				_update_tooltip()
 		_cancel_hold()
 
 func _start_hold() -> void:
@@ -94,16 +97,19 @@ func _release_hold() -> void:
 		return
 	var was_click := _hold_timer < CLICK_THRESHOLD
 	_cancel_hold()
-	if was_click and _current_state > 0:
-		_current_state -= 1
-		_update_tooltip()
+	if was_click and _current_state > 0 and _ticker != null:
+		if _ticker.try_spend_food(1.0):
+			_current_state -= 1
+			_update_tooltip()
 
 func set_part_data(data: HousePartData) -> void:
 	_part_data = data
 	_current_state = min(_part_data.start_state, _part_data.stat_change.size() - 1)
 	_current_timer = randf() * _part_data.update_time
 
-func tick(delta: float, _ticker: HouseStatsTicker) -> Variant:
+func tick(delta: float, ticker: HouseStatsTicker) -> Variant:
+	if _ticker == null:
+		_ticker = ticker
 	_current_timer += delta
 	if _current_timer >= _part_data.update_time:
 		_current_timer -= _part_data.update_time

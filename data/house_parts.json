@@ -1,22 +1,21 @@
 [
 	{
 		"description": "Солнечная батарея",
-		"update_time": 1.2,
+		"update_time": 2.0,
 		"start_state": 1,
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Light": 1.0
+					"Light": 3.0,
+					"Moisture": -1.5,
+					"Food": 1.0
 				}
 			},
 			{
 				"stat_changes": {
-					"Light": 1.8
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": 2.8
+					"Light": -1.5,
+					"Moisture": 2.5,
+					"Food": 1.0
 				}
 			}
 		]
@@ -24,23 +23,18 @@
 	{
 		"description": "Компостный бак",
 		"update_time": 2.5,
-		"start_state": 1,
+		"start_state": 0,
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Food": 0.72
+					"Light": 1.5,
+					"Moisture": -2.0
 				}
 			},
 			{
 				"stat_changes": {
-					"Food": 1.4,
-					"Moisture": -0.48
-				}
-			},
-			{
-				"stat_changes": {
-					"Food": 2.4,
-					"Moisture": -0.96
+					"Light": -2.0,
+					"Moisture": 1.5
 				}
 			}
 		]
@@ -52,19 +46,14 @@
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Moisture": -1.8
+					"Light": 1.2,
+					"Moisture": -2.0
 				}
 			},
 			{
 				"stat_changes": {
-					"Moisture": -2.8,
-					"Light": 0.48
-				}
-			},
-			{
-				"stat_changes": {
-					"Moisture": -4.2,
-					"Light": 0.72
+					"Light": -0.8,
+					"Moisture": 0.8
 				}
 			}
 		]
@@ -76,19 +65,14 @@
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Moisture": 1.4
+					"Light": 1.8,
+					"Moisture": -1.2
 				}
 			},
 			{
 				"stat_changes": {
-					"Moisture": 2.2,
-					"Food": -0.24
-				}
-			},
-			{
-				"stat_changes": {
-					"Moisture": 3.6,
-					"Food": -0.72
+					"Light": -1.2,
+					"Moisture": 2.5
 				}
 			}
 		]
@@ -96,14 +80,8 @@
 	{
 		"description": "Фитолампа",
 		"update_time": 0.8,
-		"start_state": 2,
+		"start_state": 1,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 0.88,
-					"Moisture": -0.72
-				}
-			},
 			{
 				"stat_changes": {
 					"Light": 1.6,
@@ -112,8 +90,8 @@
 			},
 			{
 				"stat_changes": {
-					"Light": 2.6,
-					"Moisture": -1.92
+					"Light": -1.2,
+					"Moisture": 0.8
 				}
 			}
 		]
@@ -125,20 +103,14 @@
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Food": 0.48,
-					"Moisture": 0.88
+					"Light": 2.5,
+					"Moisture": -2.0
 				}
 			},
 			{
 				"stat_changes": {
-					"Food": 1.2,
-					"Moisture": 1.6
-				}
-			},
-			{
-				"stat_changes": {
-					"Food": 1.92,
-					"Moisture": 2.6
+					"Light": -2.0,
+					"Moisture": 3.0
 				}
 			}
 		]
@@ -150,20 +122,14 @@
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Moisture": -1.2,
-					"Light": -0.48
+					"Light": 2.0,
+					"Moisture": -2.5
 				}
 			},
 			{
 				"stat_changes": {
-					"Moisture": -2.2,
-					"Light": -0.96
-				}
-			},
-			{
-				"stat_changes": {
-					"Moisture": -3.4,
-					"Light": -1.44
+					"Light": -1.5,
+					"Moisture": 1.5
 				}
 			}
 		]
@@ -175,20 +141,14 @@
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Food": 1.6,
-					"Light": -0.88
+					"Light": 2.5,
+					"Moisture": -2.0
 				}
 			},
 			{
 				"stat_changes": {
-					"Food": 2.8,
-					"Light": -1.68
-				}
-			},
-			{
-				"stat_changes": {
-					"Food": 4.2,
-					"Light": -2.6
+					"Light": -2.5,
+					"Moisture": 3.0
 				}
 			}
 		]
@@ -200,23 +160,14 @@
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Light": 0.72,
-					"Moisture": -0.48,
-					"Food": -0.24
+					"Light": 1.5,
+					"Moisture": -1.8
 				}
 			},
 			{
 				"stat_changes": {
-					"Light": 1.4,
-					"Moisture": -0.96,
-					"Food": -0.48
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": 2.4,
-					"Moisture": -1.68,
-					"Food": -0.72
+					"Light": -1.8,
+					"Moisture": 1.5
 				}
 			}
 		]
@@ -228,19 +179,14 @@
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Moisture": 0.88
+					"Light": 2.0,
+					"Moisture": -1.5
 				}
 			},
 			{
 				"stat_changes": {
-					"Moisture": 1.68,
-					"Food": 0.24
-				}
-			},
-			{
-				"stat_changes": {
-					"Moisture": 2.6,
-					"Food": 0.48
+					"Light": -1.5,
+					"Moisture": 3.5
 				}
 			}
 		]
@@ -248,26 +194,18 @@
 	{
 		"description": "Ультразвуковой отпугиватель",
 		"update_time": 0.7,
-		"start_state": 2,
+		"start_state": 0,
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Food": -1.4,
-					"Moisture": -0.72
+					"Light": 0.8,
+					"Moisture": -1.0
 				}
 			},
 			{
 				"stat_changes": {
-					"Food": -2.4,
-					"Moisture": -1.2,
-					"Light": 0.24
-				}
-			},
-			{
-				"stat_changes": {
-					"Food": -3.6,
-					"Moisture": -1.92,
-					"Light": 0.48
+					"Light": -0.8,
+					"Moisture": 0.7
 				}
 			}
 		]
@@ -279,20 +217,14 @@
 		"stat_change": [
 			{
 				"stat_changes": {
-					"Light": 0.48,
-					"Food": 0.24
+					"Light": 1.5,
+					"Moisture": -0.8
 				}
 			},
 			{
 				"stat_changes": {
-					"Light": 1.12,
-					"Food": 0.48
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": 1.92,
-					"Food": 0.96
+					"Light": -0.8,
+					"Moisture": 1.8
 				}
 			}
 		]

@@ -96,9 +96,16 @@ func _open_next_mutation(mutation_data: MutationPartData):
 
 
 
+func try_spend_food(amount: float) -> bool:
+	if _stats[GameEnums.StatType.Food] < amount:
+		return false
+	_stats[GameEnums.StatType.Food] -= amount
+	_stats_changed = true
+	return true
+
 func _change_stat(new_stats):
 	if new_stats == null: return
-	
+
 	for new_stat_key in new_stats.keys():
 		_stats[new_stat_key] = _stats.get_or_add(new_stat_key, 0) + new_stats[new_stat_key]
 	_stats_changed = true
