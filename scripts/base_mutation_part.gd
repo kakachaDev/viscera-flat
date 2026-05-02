@@ -11,6 +11,7 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited.bind())
 
 func _on_mouse_entered() -> void:
+	BaseHousePart._cursor_owner = self
 	Input.set_default_cursor_shape(Input.CURSOR_HELP)
 	Tooltip.instance.show_for(self)
 	_update_tooltip()
@@ -24,7 +25,9 @@ func _update_tooltip():
 	Tooltip.instance.set_text(_part_data.description, stats, _part_data.update_time)
 
 func _on_mouse_exited() -> void:
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	if BaseHousePart._cursor_owner == self:
+		BaseHousePart._cursor_owner = null
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	Tooltip.instance.hide_from(self)
 
 func set_part_data(data: MutationPartData):

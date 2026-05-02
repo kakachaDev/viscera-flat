@@ -8,6 +8,10 @@ var _current_state: int = 1
 var _current_timer = 0
 
 const HOLD_DURATION := 0.9
+const HOLD_SHOW_DELAY := 0.3
+const CLICK_THRESHOLD := 0.15
+
+static var _cursor_owner: Node = null
 
 var _is_holding := false
 var _hold_timer := 0.0
@@ -23,12 +27,15 @@ func _ready() -> void:
 	add_child(_hold_indicator)
 
 func _on_mouse_entered() -> void:
+	BaseHousePart._cursor_owner = self
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	Tooltip.instance.show_for(self)
 	_update_tooltip()
 
 func _on_mouse_exited() -> void:
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	if BaseHousePart._cursor_owner == self:
+		BaseHousePart._cursor_owner = null
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	Tooltip.instance.hide_from(self)
 	_cancel_hold()
 
@@ -61,7 +68,9 @@ func _process(delta: float) -> void:
 	if not _is_holding:
 		return
 	_hold_timer += delta
-	_hold_indicator.progress = minf(_hold_timer / HOLD_DURATION, 1.0)
+	if _hold_timer >= HOLD_SHOW_DELAY:
+		_hold_indicator.show()
+		_hold_indicator.progress = minf((_hold_timer - HOLD_SHOW_DELAY) / (HOLD_DURATION - HOLD_SHOW_DELAY), 1.0)
 	if _hold_timer >= HOLD_DURATION:
 		if _current_state < _part_data.stat_change.size() - 1:
 			_current_state += 1
@@ -71,8 +80,6 @@ func _process(delta: float) -> void:
 func _start_hold() -> void:
 	_is_holding = true
 	_hold_timer = 0.0
-	_hold_indicator.progress = 0.0
-	_hold_indicator.show()
 
 func _cancel_hold() -> void:
 	if not _is_holding:
@@ -85,9 +92,9 @@ func _cancel_hold() -> void:
 func _release_hold() -> void:
 	if not _is_holding:
 		return
-	var was_quick := _hold_timer < HOLD_DURATION
+	var was_click := _hold_timer < CLICK_THRESHOLD
 	_cancel_hold()
-	if was_quick and _current_state > 0:
+	if was_click and _current_state > 0:
 		_current_state -= 1
 		_update_tooltip()
 
