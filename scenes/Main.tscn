@@ -34,28 +34,28 @@ hud_grafted_label = NodePath("UI/Game/HUD/GraftedLabel")
 [node name="Parts" type="Node" parent="House" unique_id=1027481682]
 
 [node name="BaseHouseClickableArea" parent="House/Parts" unique_id=75998111 instance=ExtResource("2_rvslj")]
-position = Vector2(1362, 907)
+position = Vector2(825, 716)
 
 [node name="BaseHouseClickableArea2" parent="House/Parts" unique_id=1515508204 instance=ExtResource("2_rvslj")]
-position = Vector2(1355, 770)
+position = Vector2(1095, 627)
 
 [node name="BaseHouseClickableArea3" parent="House/Parts" unique_id=1840358301 instance=ExtResource("2_rvslj")]
-position = Vector2(1368, 623)
+position = Vector2(591, 562)
 
 [node name="BaseHouseClickableArea4" parent="House/Parts" unique_id=1526822850 instance=ExtResource("2_rvslj")]
-position = Vector2(1367, 473)
+position = Vector2(1276, 505)
 
 [node name="BaseHouseClickableArea5" parent="House/Parts" unique_id=1101391252 instance=ExtResource("2_rvslj")]
-position = Vector2(1587, 903)
+position = Vector2(783, 395)
 
 [node name="BaseHouseClickableArea6" parent="House/Parts" unique_id=324784114 instance=ExtResource("2_rvslj")]
-position = Vector2(1583, 740)
+position = Vector2(1039, 444)
 
 [node name="BaseHouseClickableArea7" parent="House/Parts" unique_id=118161282 instance=ExtResource("2_rvslj")]
-position = Vector2(1571, 584)
+position = Vector2(603, 272)
 
 [node name="BaseHouseClickableArea8" parent="House/Parts" unique_id=1300598298 instance=ExtResource("2_rvslj")]
-position = Vector2(1569, 432)
+position = Vector2(1182, 241)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=457209735]
 
@@ -127,6 +127,7 @@ text = "Привито: 0/2"
 
 [node name="CardTray" type="Control" parent="UI/Game" unique_id=500200001]
 layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
