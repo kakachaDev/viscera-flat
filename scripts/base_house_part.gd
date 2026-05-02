@@ -45,7 +45,11 @@ func set_part_data(data: HousePartData) -> void:
 
 func set_active(value: bool) -> void:
 	_active = value
-	modulate.a = 1.0 if value else 0.5
+	if not value:
+		visible = (_state == State.GRAFTED)
+	else:
+		visible = true
+	modulate.a = 1.0
 
 func can_accept_card() -> bool:
 	return _active and _state == State.CUT
