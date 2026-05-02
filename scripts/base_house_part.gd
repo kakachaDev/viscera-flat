@@ -1,21 +1,29 @@
 extends Area2D
-class_name BaseHousePart
+class_name GraftCell
 
-@export var change_stat_text_info_prefab : PackedScene
+enum State { HEALED, CUT, GRAFTING, GRAFTED }
 
-var _part_data: HousePartData
-var _current_state: int = 0
-var _current_timer = 0
+signal grafting_succeeded(cell: GraftCell)
+signal grafting_failed(cell: GraftCell, mutation: MutationPartData)
 
 const HOLD_DURATION := 0.9
 const HOLD_SHOW_DELAY := 0.3
-const CLICK_THRESHOLD := 0.15
 
 static var _cursor_owner: Node = null
+
+@export var change_stat_text_info_prefab: PackedScene
+
+var _part_data: HousePartData = null
+var _state: State = State.HEALED
+var _passive_timer: float = 0.0
+var _grafted_mutation: MutationPartData = null
+var _graft_timer: float = 0.0
+var _active: bool = false
 
 var _is_holding := false
 var _hold_timer := 0.0
 var _hold_indicator: HoldProgressIndicator
+var _graft_indicator: HoldProgressIndicator
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -26,30 +34,183 @@ func _ready() -> void:
 	_hold_indicator.hide()
 	add_child(_hold_indicator)
 
+	_graft_indicator = HoldProgressIndicator.new()
+	_graft_indicator.hide()
+	add_child(_graft_indicator)
+
+func set_part_data(data: HousePartData) -> void:
+	_part_data = data
+	_passive_timer = randf() * data.update_time
+	_update_visuals()
+
+func set_active(value: bool) -> void:
+	_active = value
+	modulate.a = 1.0 if value else 0.5
+
+func can_accept_card() -> bool:
+	return _active and _state == State.CUT
+
+func start_grafting(mutation: MutationPartData) -> void:
+	if _state != State.CUT:
+		return
+	_state = State.GRAFTING
+	_grafted_mutation = mutation
+	_graft_timer = 0.0
+	_graft_indicator.progress = 0.0
+	_graft_indicator.show()
+	_update_visuals()
+	if GraftCell._cursor_owner == self:
+		_update_tooltip()
+
+func tick(delta: float, current_stats: Dictionary) -> Variant:
+	match _state:
+		State.HEALED:
+			return _tick_passive(delta, 1)
+		State.CUT:
+			return _tick_passive(delta, 0)
+		State.GRAFTING:
+			return _tick_grafting(delta, current_stats)
+		State.GRAFTED:
+			return _tick_grafted(delta)
+	return null
+
+func _tick_passive(delta: float, state_idx: int) -> Variant:
+	if _part_data == null:
+		return null
+	_passive_timer += delta
+	if _passive_timer >= _part_data.update_time:
+		_passive_timer -= _part_data.update_time
+		var stats = _part_data.stat_change[state_idx].stat_changes.duplicate()
+		for k in stats.keys():
+			if stats[k] == 0:
+				stats.erase(k)
+		if stats.size() > 0:
+			_spawn_stat_text(stats)
+			return stats
+	return null
+
+func _tick_grafting(delta: float, current_stats: Dictionary) -> Variant:
+	for key in _grafted_mutation.conditions.keys():
+		var sep := (key as String).rfind("_")
+		var stat_name := (key as String).substr(0, sep)
+		var cond := (key as String).substr(sep + 1)
+		var stat_type := DataLoader._string_to_stat_type(stat_name)
+		var threshold := float(_grafted_mutation.conditions[key])
+		var val := float(current_stats.get(stat_type, 50.0))
+		if cond == "min" and val < threshold:
+			_fail_graft()
+			return null
+		if cond == "max" and val > threshold:
+			_fail_graft()
+			return null
+
+	_graft_timer += delta
+	_graft_indicator.progress = minf(_graft_timer / _grafted_mutation.graft_time, 1.0)
+
+	if _graft_timer >= _grafted_mutation.graft_time:
+		_succeed_graft()
+		return null
+
+	return _tick_passive(delta, 0)
+
+func _tick_grafted(delta: float) -> Variant:
+	if _grafted_mutation == null:
+		return null
+	_passive_timer += delta
+	if _passive_timer >= _grafted_mutation.update_time:
+		_passive_timer -= _grafted_mutation.update_time
+		var stats = _grafted_mutation.stat_change.duplicate()
+		for k in stats.keys():
+			if stats[k] == 0:
+				stats.erase(k)
+		if stats.size() > 0:
+			_spawn_stat_text(stats)
+			return stats
+	return null
+
+func _spawn_stat_text(stats: Dictionary) -> void:
+	if change_stat_text_info_prefab == null:
+		return
+	var text := change_stat_text_info_prefab.instantiate() as ChangeStatTextInfo
+	text.set_stats(stats)
+	add_child(text)
+	text.position = -text.size / 2
+
+func _succeed_graft() -> void:
+	_state = State.GRAFTED
+	_graft_indicator.hide()
+	_passive_timer = 0.0
+	_update_visuals()
+	if GraftCell._cursor_owner == self:
+		_update_tooltip()
+	grafting_succeeded.emit(self)
+
+func _fail_graft() -> void:
+	var mutation := _grafted_mutation
+	_state = State.CUT
+	_grafted_mutation = null
+	_graft_timer = 0.0
+	_graft_indicator.hide()
+	_graft_indicator.progress = 0.0
+	_update_visuals()
+	_show_fail_floater()
+	if GraftCell._cursor_owner == self:
+		_update_tooltip()
+	grafting_failed.emit(self, mutation)
+
+func _show_fail_floater() -> void:
+	var label := Label.new()
+	label.text = "Неудачно"
+	label.add_theme_color_override("font_color", Color.RED)
+	add_child(label)
+	label.position = Vector2(-32, -60)
+	var tween := create_tween()
+	tween.tween_property(label, "position", label.position + Vector2(0, -50), 1.5)
+	tween.parallel().tween_property(label, "modulate:a", 0.0, 1.5)
+	tween.tween_callback(label.queue_free)
+
+func _update_visuals() -> void:
+	if not has_node("Body"):
+		return
+	var sprite := $Body as Node2D
+	match _state:
+		State.HEALED:
+			sprite.modulate = Color(0.5, 1.0, 0.5)
+		State.CUT:
+			sprite.modulate = Color(1.0, 0.45, 0.35)
+		State.GRAFTING:
+			sprite.modulate = Color(1.0, 0.85, 0.2)
+		State.GRAFTED:
+			sprite.modulate = Color(0.65, 0.35, 1.0)
+
+# ---- Input / Hold mechanic ----
+
 func _on_mouse_entered() -> void:
-	BaseHousePart._cursor_owner = self
+	GraftCell._cursor_owner = self
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	Tooltip.instance.show_for(self)
 	_update_tooltip()
 
 func _on_mouse_exited() -> void:
-	if BaseHousePart._cursor_owner == self:
-		BaseHousePart._cursor_owner = null
+	if GraftCell._cursor_owner == self:
+		GraftCell._cursor_owner = null
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	Tooltip.instance.hide_from(self)
 	_cancel_hold()
 
 func _update_tooltip() -> void:
-	Tooltip.instance.set_house_part(_part_data, _current_state)
+	Tooltip.instance.set_graft_cell(_part_data, _state, _grafted_mutation)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if not _active or _state == State.GRAFTING or _state == State.GRAFTED:
+		return
 	if event is InputEventMouseButton:
 		var mb := event as InputEventMouseButton
 		if mb.button_index == MOUSE_BUTTON_LEFT:
 			if mb.pressed:
 				_start_hold()
 			else:
-				_release_hold()
+				_cancel_hold()
 
 func _input(event: InputEvent) -> void:
 	if not _is_holding:
@@ -57,21 +218,28 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var mb := event as InputEventMouseButton
 		if mb.button_index == MOUSE_BUTTON_LEFT and not mb.pressed:
-			_release_hold()
+			_cancel_hold()
 
 func _process(delta: float) -> void:
 	if not _is_holding:
 		return
 	_hold_timer += delta
-	if _hold_timer >= HOLD_SHOW_DELAY and _current_state < _part_data.stat_change.size() - 1:
+	if _hold_timer >= HOLD_SHOW_DELAY:
 		_hold_indicator.show()
 		_hold_indicator.progress = minf(
 			(_hold_timer - HOLD_SHOW_DELAY) / (HOLD_DURATION - HOLD_SHOW_DELAY), 1.0)
 	if _hold_timer >= HOLD_DURATION:
-		if _current_state < _part_data.stat_change.size() - 1:
-			_current_state += 1
-			_update_tooltip()
+		_toggle_cut_healed()
 		_cancel_hold()
+
+func _toggle_cut_healed() -> void:
+	if _state == State.HEALED:
+		_state = State.CUT
+	elif _state == State.CUT:
+		_state = State.HEALED
+	_update_visuals()
+	if GraftCell._cursor_owner == self:
+		_update_tooltip()
 
 func _start_hold() -> void:
 	_is_holding = true
@@ -84,34 +252,3 @@ func _cancel_hold() -> void:
 	_hold_timer = 0.0
 	_hold_indicator.progress = 0.0
 	_hold_indicator.hide()
-
-func _release_hold() -> void:
-	if not _is_holding:
-		return
-	var was_click := _hold_timer < CLICK_THRESHOLD
-	_cancel_hold()
-	if was_click and _current_state > 0:
-		_current_state -= 1
-		_update_tooltip()
-
-func set_part_data(data: HousePartData) -> void:
-	_part_data = data
-	_current_state = min(_part_data.start_state, _part_data.stat_change.size() - 1)
-	_current_timer = randf() * _part_data.update_time
-
-func tick(delta: float) -> Variant:
-	_current_timer += delta
-	if _current_timer >= _part_data.update_time:
-		_current_timer -= _part_data.update_time
-		var stats = _part_data.stat_change[_current_state].stat_changes.duplicate()
-		for stat_key in stats.keys():
-			if stats[stat_key] == 0:
-				stats.erase(stat_key)
-		if stats.size() > 0:
-			if change_stat_text_info_prefab:
-				var text := change_stat_text_info_prefab.instantiate() as ChangeStatTextInfo
-				text.set_stats(stats)
-				add_child(text)
-				text.position = -text.size / 2
-			return stats
-	return null

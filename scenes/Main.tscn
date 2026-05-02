@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dg7xml8cup8t0" path="res://scripts/main.gd" id="1_rvslj"]
 [ext_resource type="PackedScene" uid="uid://bv3w0v2mhq0rw" path="res://assets/prefabs/base_house_clickable_area.tscn" id="2_rvslj"]
 [ext_resource type="PackedScene" uid="uid://3uvusa376in7" path="res://assets/prefabs/base_stat_progress.tscn" id="3_0bbpv"]
-[ext_resource type="PackedScene" uid="uid://blsy4gokb48qn" path="res://assets/prefabs/base_mutation_area.tscn" id="3_rarhs"]
 [ext_resource type="Script" uid="uid://balt5inkmaub2" path="res://scripts/tooltip.gd" id="5_vcsgt"]
 [ext_resource type="Script" uid="uid://cerqws684bb2u" path="res://scripts/end_game.gd" id="6_c01mt"]
 
@@ -23,11 +22,12 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("parts", "mutations", "hud_mutation_count_label")]
+[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("cells", "card_tray", "hud_stage_label", "hud_grafted_label")]
 script = ExtResource("1_rvslj")
-parts = [NodePath("House/Parts/BaseHouseClickableArea"), NodePath("House/Parts/BaseHouseClickableArea2"), NodePath("House/Parts/BaseHouseClickableArea3"), NodePath("House/Parts/BaseHouseClickableArea4"), NodePath("House/Parts/BaseHouseClickableArea5"), NodePath("House/Parts/BaseHouseClickableArea6"), NodePath("House/Parts/BaseHouseClickableArea7"), NodePath("House/Parts/BaseHouseClickableArea8")]
-mutations = [NodePath("House/Mutations/BaseMutationArea"), NodePath("House/Mutations/BaseMutationArea2"), NodePath("House/Mutations/BaseMutationArea3"), NodePath("House/Mutations/BaseMutationArea4"), NodePath("House/Mutations/BaseMutationArea5"), NodePath("House/Mutations/BaseMutationArea6"), NodePath("House/Mutations/BaseMutationArea7"), NodePath("House/Mutations/BaseMutationArea8")]
-hud_mutation_count_label = NodePath("UI/Game/HUD/MutationCountLabel")
+cells = [NodePath("House/Parts/BaseHouseClickableArea"), NodePath("House/Parts/BaseHouseClickableArea2"), NodePath("House/Parts/BaseHouseClickableArea3"), NodePath("House/Parts/BaseHouseClickableArea4"), NodePath("House/Parts/BaseHouseClickableArea5"), NodePath("House/Parts/BaseHouseClickableArea6"), NodePath("House/Parts/BaseHouseClickableArea7"), NodePath("House/Parts/BaseHouseClickableArea8")]
+card_tray = NodePath("UI/Game/CardTray")
+hud_stage_label = NodePath("UI/Game/HUD/StageLabel")
+hud_grafted_label = NodePath("UI/Game/HUD/GraftedLabel")
 
 [node name="House" type="Node2D" parent="." unique_id=785040501]
 
@@ -56,40 +56,6 @@ position = Vector2(1571, 584)
 
 [node name="BaseHouseClickableArea8" parent="House/Parts" unique_id=1300598298 instance=ExtResource("2_rvslj")]
 position = Vector2(1569, 432)
-
-[node name="Mutations" type="Node" parent="House" unique_id=1634255564]
-
-[node name="BaseMutationArea" parent="House/Mutations" unique_id=1425143805 instance=ExtResource("3_rarhs")]
-visible = false
-position = Vector2(500, 875)
-
-[node name="BaseMutationArea2" parent="House/Mutations" unique_id=126731364 instance=ExtResource("3_rarhs")]
-visible = false
-position = Vector2(516, 695)
-
-[node name="BaseMutationArea3" parent="House/Mutations" unique_id=410331434 instance=ExtResource("3_rarhs")]
-visible = false
-position = Vector2(528, 535)
-
-[node name="BaseMutationArea4" parent="House/Mutations" unique_id=331879341 instance=ExtResource("3_rarhs")]
-visible = false
-position = Vector2(537, 370)
-
-[node name="BaseMutationArea5" parent="House/Mutations" unique_id=1991671571 instance=ExtResource("3_rarhs")]
-visible = false
-position = Vector2(666, 872)
-
-[node name="BaseMutationArea6" parent="House/Mutations" unique_id=1532758501 instance=ExtResource("3_rarhs")]
-visible = false
-position = Vector2(710, 658)
-
-[node name="BaseMutationArea7" parent="House/Mutations" unique_id=187347661 instance=ExtResource("3_rarhs")]
-visible = false
-position = Vector2(697, 497)
-
-[node name="BaseMutationArea8" parent="House/Mutations" unique_id=2038822680 instance=ExtResource("3_rarhs")]
-visible = false
-position = Vector2(732, 304)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=457209735]
 
@@ -147,13 +113,31 @@ fit_content = true
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 240.0
+offset_right = 200.0
 offset_bottom = 80.0
 theme_override_constants/separation = 4
 
-[node name="MutationCountLabel" type="Label" parent="UI/Game/HUD" unique_id=500100003]
+[node name="StageLabel" type="Label" parent="UI/Game/HUD" unique_id=500100010]
 layout_mode = 2
-text = "Мутации: 0/8"
+text = "Этап: 1/4"
+
+[node name="GraftedLabel" type="Label" parent="UI/Game/HUD" unique_id=500100011]
+layout_mode = 2
+text = "Привито: 0/2"
+
+[node name="CardTray" type="Control" parent="UI/Game" unique_id=500200001]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -148.0
+offset_right = 280.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="EndGame" type="Panel" parent="UI/Game" unique_id=1137422834]
 visible = false
@@ -173,12 +157,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "Результат мутаций:
-
-Продуктивность: 85%
-Стабильность: 25%
-Странность: 70%
-
-Безумный урожай: растения плодоносят, но вы не знаете чем именно..."
+text = "Результат мутаций:"
 horizontal_alignment = 1
 vertical_alignment = 1

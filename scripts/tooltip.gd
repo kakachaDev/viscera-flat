@@ -20,6 +20,49 @@ func hide_from(node: Node) -> void:
 		_owner = null
 		hide()
 
+func set_graft_cell(part_data: HousePartData, state: GraftCell.State, mutation: MutationPartData) -> void:
+	size = Vector2(300, 0)
+	var lines: Array[String] = []
+
+	match state:
+		GraftCell.State.HEALED:
+			lines = [
+				"[b]Заживленная ячейка[/b]",
+				"",
+				_format_stats(part_data.stat_change[1].stat_changes, part_data.update_time),
+				"",
+				"[color=aaaaaa]Удерж. 0.9с → Разрезать[/color]",
+			]
+		GraftCell.State.CUT:
+			lines = [
+				"[b]Разрезанная ячейка[/b]",
+				"",
+				_format_stats(part_data.stat_change[0].stat_changes, part_data.update_time),
+				"",
+				"[color=aaaaaa]Удерж. 0.9с → Заживить[/color]",
+				"[color=aaaaaa]Перетащите карточку мутации[/color]",
+			]
+		GraftCell.State.GRAFTING:
+			if mutation != null:
+				lines = [
+					"[b]Прививка: %s[/b]" % mutation.description,
+					"",
+					_format_conditions(mutation),
+					"",
+					"Итог: " + _format_stats(mutation.stat_change, mutation.update_time),
+				]
+		GraftCell.State.GRAFTED:
+			if mutation != null:
+				lines = [
+					"[b]Привито: %s[/b]" % mutation.description,
+					"",
+					_format_stats(mutation.stat_change, mutation.update_time),
+				]
+
+	$Text.text = "\n".join(lines)
+	await get_tree().process_frame
+	size = Vector2(300, 0)
+
 func set_mutation(data: MutationPartData) -> void:
 	size = Vector2(300, 0)
 	var lines := [
@@ -31,33 +74,19 @@ func set_mutation(data: MutationPartData) -> void:
 	await get_tree().process_frame
 	size = Vector2(300, 0)
 
-func set_house_part(data: HousePartData, current_state: int) -> void:
-	size = Vector2(300, 0)
-	var state_label := "Открыто" if current_state == 0 else "Закрыто"
-
-	var lines := [
-		data.description,
-		"",
-		"● %s" % state_label,
-		"  " + _format_stats(data.stat_change[current_state].stat_changes, data.update_time),
-	]
-
-	if current_state == 0:
-		lines.append_array([
-			"",
-			"▲ Закрыть  [удерж. 0.9с]",
-			"  " + _format_stats(data.stat_change[1].stat_changes, data.update_time),
-		])
-	else:
-		lines.append_array([
-			"",
-			"▼ Открыть  [клик]",
-			"  " + _format_stats(data.stat_change[0].stat_changes, data.update_time),
-		])
-
-	$Text.text = "\n".join(lines)
-	await get_tree().process_frame
-	size = Vector2(300, 0)
+func _format_conditions(mutation: MutationPartData) -> String:
+	var parts: Array[String] = []
+	for key in mutation.conditions.keys():
+		var sep := (key as String).rfind("_")
+		var stat_name := (key as String).substr(0, sep)
+		var cond := (key as String).substr(sep + 1)
+		var val: float = mutation.conditions[key]
+		var label := "≥" if cond == "min" else "≤"
+		var stat_type := DataLoader._string_to_stat_type(stat_name)
+		var color := (GameEnums.StatColor.get(stat_type, Color.WHITE) as Color).to_html()
+		var name := GameEnums.StatName.get(stat_type, stat_name) as String
+		parts.append("[color=%s]%s %s %.0f%%[/color]" % [color, name, label, val])
+	return "Условия: " + ", ".join(parts)
 
 func _format_stats(stats: Dictionary, update_time: float) -> String:
 	var parts: Array[String] = []

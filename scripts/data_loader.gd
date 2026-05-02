@@ -59,6 +59,7 @@ static func load_mutations_from_json(file_path: String) -> Array[MutationPartDat
 		mut.id = mut_data.get("id", "")
 		mut.description = mut_data.get("description", "")
 		mut.update_time = mut_data.get("update_time", 1.0)
+		mut.graft_time = mut_data.get("graft_time", 8.0)
 		for condition_key in mut_data.get("conditions", {}).keys():
 			mut.conditions[condition_key] = float(mut_data["conditions"][condition_key])
 		
