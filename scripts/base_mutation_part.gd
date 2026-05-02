@@ -17,12 +17,7 @@ func _on_mouse_entered() -> void:
 	_update_tooltip()
 
 func _update_tooltip():
-	var stats = _part_data.stat_change.duplicate()
-	for stat_key in stats.keys():
-		stats[stat_key] = stats.get(stat_key, 0)
-		if stats[stat_key] == 0:
-			stats.erase(stat_key)
-	Tooltip.instance.set_text(_part_data.description, stats, _part_data.update_time)
+	Tooltip.instance.set_mutation(_part_data)
 
 func _on_mouse_exited() -> void:
 	if BaseHousePart._cursor_owner == self:

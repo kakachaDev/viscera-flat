@@ -20,6 +20,17 @@ func hide_from(node: Node) -> void:
 		_owner = null
 		hide()
 
+func set_mutation(data: MutationPartData) -> void:
+	size = Vector2(300, 0)
+	var lines := [
+		data.description,
+		"",
+		_format_stats(data.stat_change, data.update_time),
+	]
+	$Text.text = "\n".join(lines)
+	await get_tree().process_frame
+	size = Vector2(300, 0)
+
 func set_house_part(data: HousePartData, current_state: int) -> void:
 	size = Vector2(300, 0)
 	var food_color := (GameEnums.StatColor[GameEnums.StatType.Food] as Color).to_html()
