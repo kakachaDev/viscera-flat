@@ -78,6 +78,8 @@ func _process(delta: float) -> void:
 			if _ticker.try_spend_food(2.0):
 				_current_state += 1
 				_update_tooltip()
+			else:
+				_spawn_insufficient_food()
 		_cancel_hold()
 
 func _start_hold() -> void:
@@ -101,6 +103,16 @@ func _release_hold() -> void:
 		if _ticker.try_spend_food(1.0):
 			_current_state -= 1
 			_update_tooltip()
+		else:
+			_spawn_insufficient_food()
+
+func _spawn_insufficient_food() -> void:
+	if not change_stat_text_info_prefab:
+		return
+	var text := change_stat_text_info_prefab.instantiate() as ChangeStatTextInfo
+	text.set_insufficient(GameEnums.StatType.Food)
+	add_child(text)
+	text.position = -text.size / 2
 
 func set_part_data(data: HousePartData) -> void:
 	_part_data = data
