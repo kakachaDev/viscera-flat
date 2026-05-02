@@ -118,7 +118,8 @@ func _base_update_stats(delta: float) -> void:
 		return
 
 	for cell in cells:
-		_change_stat(cell.tick(delta, _stats))
+		if cell.visible:
+			_change_stat(cell.tick(delta, _stats))
 
 	if _stats_changed:
 		on_stats_changed.emit(_stats)
