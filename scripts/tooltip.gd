@@ -3,11 +3,22 @@ class_name Tooltip
 
 static var instance: Tooltip
 
+var _owner: Node = null
+
 func _init() -> void:
 	instance = self
 
 func _ready() -> void:
 	hide()
+
+func show_for(node: Node) -> void:
+	_owner = node
+	show()
+
+func hide_from(node: Node) -> void:
+	if _owner == node:
+		_owner = null
+		hide()
 
 func set_text(description: String, stats: Dictionary[GameEnums.StatType, float], update_time: float):
 	size = Vector2(250, 0)

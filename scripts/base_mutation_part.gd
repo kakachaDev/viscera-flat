@@ -12,8 +12,7 @@ func _ready() -> void:
 
 func _on_mouse_entered() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_HELP)
-	
-	Tooltip.instance.show()
+	Tooltip.instance.show_for(self)
 	_update_tooltip()
 
 func _update_tooltip():
@@ -26,8 +25,7 @@ func _update_tooltip():
 
 func _on_mouse_exited() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	
-	Tooltip.instance.hide()
+	Tooltip.instance.hide_from(self)
 
 func set_part_data(data: MutationPartData):
 	_part_data = data
