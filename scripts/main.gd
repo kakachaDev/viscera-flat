@@ -96,6 +96,9 @@ func _open_next_mutation(mutation_data: MutationPartData):
 
 
 
+func has_food(amount: float) -> bool:
+	return _stats[GameEnums.StatType.Food] >= amount
+
 func try_spend_food(amount: float) -> bool:
 	if _stats[GameEnums.StatType.Food] < amount:
 		return false

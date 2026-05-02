@@ -28,6 +28,8 @@ static func load_house_parts_from_json(file_path: String) -> Array[HousePartData
 		part.description = item.get("description", "")
 		part.update_time = item.get("update_time", 1.0)
 		part.start_state = item.get("start_state", 0)
+		part.downgrade_cost = item.get("downgrade_cost", 5)
+		part.upgrade_cost = item.get("upgrade_cost", 10)
 		
 		if item.has("stat_change"):
 			for stat_change_data in item["stat_change"]:
