@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://blsy4gokb48qn" path="res://assets/prefabs/base_mutation_area.tscn" id="3_rarhs"]
 [ext_resource type="Script" uid="uid://balt5inkmaub2" path="res://scripts/tooltip.gd" id="5_vcsgt"]
 [ext_resource type="Script" uid="uid://cerqws684bb2u" path="res://scripts/end_game.gd" id="6_c01mt"]
-[ext_resource type="Script" path="res://scripts/danger_overlay.gd" id="7_dngov"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c01mt"]
 content_margin_left = 0.0
@@ -102,18 +101,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="DangerOverlay" type="ColorRect" parent="UI/Game" unique_id=500200001 node_paths=PackedStringArray("ticker")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 0, 0, 0)
-script = ExtResource("7_dngov")
-ticker = NodePath("../../..")
 
 [node name="Stats" type="HBoxContainer" parent="UI/Game" unique_id=2078103119]
 layout_mode = 1
