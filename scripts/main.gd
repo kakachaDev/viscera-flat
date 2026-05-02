@@ -4,7 +4,6 @@ class_name HouseStatsTicker
 signal on_stats_changed()
 
 const UPDATE_TIME := 1.0 / 20.0
-const GAME_DURATION := 300.0
 
 var _stats: Dictionary[GameEnums.StatType, float] = {
 	GameEnums.StatType.Light: 50,
@@ -13,7 +12,6 @@ var _stats: Dictionary[GameEnums.StatType, float] = {
 
 @export var parts: Array[BaseHousePart]
 @export var mutations: Array[BaseMutationPart]
-@export var hud_timer_label: Label
 @export var hud_mutation_count_label: Label
 
 var _stats_changed := false
@@ -23,7 +21,6 @@ var _mutation_part_data: Array[MutationPartData]
 var _impacts: Dictionary
 var _spawned_mutation_ids: Array[String] = []
 var _next_mutation_time := 0.0
-var _game_timer := GAME_DURATION
 
 func _ready() -> void:
 	var house_parts: Array[HousePartData] = DataLoader.load_house_parts_from_json("res://data/house_parts.json")
@@ -50,41 +47,19 @@ func _base_update_stats(delta: float) -> void:
 		on_stats_changed.emit(_stats)
 		_stats_changed = false
 
-	_game_timer -= delta
-	_update_hud()
-
-	for stat_key in _stats.keys():
-		if _stats[stat_key] <= 0.0:
-			_active = false
-			EndGame.instance.show_lose(_get_zero_stat_reason(stat_key))
-			return
-
-	var all_maxed := true
-	for stat_key in _stats.keys():
-		if _stats[stat_key] < 100.0:
-			all_maxed = false
-			break
-	if all_maxed:
-		_active = false
-		EndGame.instance.show_lose("Перенасыщение")
-		return
-
-	if _game_timer <= 0.0:
-		_active = false
-		_show_end_game()
-		return
-
 	_next_mutation_time -= delta
 	if _next_mutation_time <= 0.0:
 		_try_spawn_mutation()
 		_next_mutation_time = randf_range(10.0, 20.0)
 
+	if _spawned_mutation_ids.size() >= mutations.size():
+		_active = false
+		_show_end_game()
+		return
+
 	get_tree().create_timer(UPDATE_TIME).timeout.connect(_base_update_stats.bind(UPDATE_TIME))
 
 func _update_hud() -> void:
-	if hud_timer_label:
-		var secs := maxi(0, int(_game_timer))
-		hud_timer_label.text = "%d:%02d" % [secs / 60, secs % 60]
 	if hud_mutation_count_label:
 		hud_mutation_count_label.text = "Мутации: %d/8" % _spawned_mutation_ids.size()
 
@@ -105,6 +80,7 @@ func _try_spawn_mutation() -> void:
 		mutation.set_part_data(chosen)
 		break
 	_spawned_mutation_ids.append(chosen.id)
+	_update_hud()
 
 func _mutation_meets_conditions(mutation: MutationPartData) -> bool:
 	for key in mutation.conditions.keys():
@@ -117,12 +93,6 @@ func _mutation_meets_conditions(mutation: MutationPartData) -> bool:
 		if cond == "max" and _stats[stat] > threshold:
 			return false
 	return true
-
-func _get_zero_stat_reason(stat: GameEnums.StatType) -> String:
-	match stat:
-		GameEnums.StatType.Moisture: return "Засуха"
-		GameEnums.StatType.Light:    return "Темнота"
-		_:                           return "Катастрофа"
 
 func _show_end_game() -> void:
 	var spawned: Array[MutationPartData] = []

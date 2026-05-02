@@ -6,10 +6,6 @@ static var instance: EndGame
 func _init() -> void:
 	instance = self
 
-func show_lose(reason: String) -> void:
-	$Text.text = "[center]\n\n\n[font_size=52]%s[/font_size]\n\n[font_size=24]Игра окончена[/font_size][/center]" % reason
-	show()
-
 func show_end_game(impacts: Dictionary, parts: Array[MutationPartData]):
 	var meta_stats = _calculate_meta_stats(impacts, parts)
 	var description = _get_result_description(meta_stats)
