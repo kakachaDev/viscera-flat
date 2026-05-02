@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://blsy4gokb48qn"]
+
+[ext_resource type="Script" uid="uid://d0b13aacbwhws" path="res://scripts/base_mutation_part.gd" id="1_xymws"]
+[ext_resource type="PackedScene" uid="uid://dgwc5eupuj0gu" path="res://assets/prefabs/change_stat_text_info.tscn" id="2_o8iai"]
+[ext_resource type="Texture2D" uid="uid://cr0e8p6ld8cmf" path="res://icon.svg" id="3_0eql4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rarhs"]
+size = Vector2(128, 127)
+
+[node name="BaseMutationArea" type="Area2D" unique_id=1425143805]
+script = ExtResource("1_xymws")
+change_stat_text_info_prefab = ExtResource("2_o8iai")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=980696738]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_rarhs")
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1596975103]
+texture = ExtResource("3_0eql4")
+flip_v = true

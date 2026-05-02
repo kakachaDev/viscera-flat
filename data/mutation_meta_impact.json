@@ -1,0 +1,66 @@
+[
+    {
+        "mutation_id": "mut_light_positive",
+        "impacts": {
+            "PRODUCTIVITY": 2,
+            "STABILITY": -1,
+            "WEIRDNESS": 1
+        }
+    },
+    {
+        "mutation_id": "mut_light_negative",
+        "impacts": {
+            "PRODUCTIVITY": -1,
+            "STABILITY": -2,
+            "WEIRDNESS": 2
+        }
+    },
+    {
+        "mutation_id": "mut_food_positive",
+        "impacts": {
+            "PRODUCTIVITY": 3,
+            "STABILITY": 1,
+            "WEIRDNESS": 0
+        }
+    },
+    {
+        "mutation_id": "mut_food_negative",
+        "impacts": {
+            "PRODUCTIVITY": -2,
+            "STABILITY": -1,
+            "WEIRDNESS": 1
+        }
+    },
+    {
+        "mutation_id": "mut_moisture_positive",
+        "impacts": {
+            "PRODUCTIVITY": 1,
+            "STABILITY": 2,
+            "WEIRDNESS": -1
+        }
+    },
+    {
+        "mutation_id": "mut_moisture_negative",
+        "impacts": {
+            "PRODUCTIVITY": -1,
+            "STABILITY": -2,
+            "WEIRDNESS": 1
+        }
+    },
+    {
+        "mutation_id": "mut_light_food_positive",
+        "impacts": {
+            "PRODUCTIVITY": 3,
+            "STABILITY": -2,
+            "WEIRDNESS": 3
+        }
+    },
+    {
+        "mutation_id": "mut_food_moisture_negative",
+        "impacts": {
+            "PRODUCTIVITY": -3,
+            "STABILITY": -2,
+            "WEIRDNESS": 4
+        }
+    }
+]

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://3uvusa376in7"]
+
+[ext_resource type="Script" uid="uid://ccq8xs2gru538" path="res://scripts/base_stat_progress.gd" id="1_57w1s"]
+
+[sub_resource type="Gradient" id="Gradient_rvslj"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0bbpv"]
+gradient = SubResource("Gradient_rvslj")
+width = 128
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_rarhs"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vcsgt"]
+gradient = SubResource("Gradient_rarhs")
+width = 128
+height = 32
+
+[node name="BaseStatProgress" type="TextureProgressBar" unique_id=73431995]
+custom_minimum_size = Vector2(128, 0)
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_0bbpv")
+texture_progress = SubResource("GradientTexture2D_vcsgt")
+script = ExtResource("1_57w1s")
+
+[node name="Label" type="Label" parent="." unique_id=827208998]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.5
+offset_top = -23.0
+offset_right = 23.5
+grow_horizontal = 2

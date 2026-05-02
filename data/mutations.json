@@ -1,0 +1,92 @@
+[
+	{
+		"id": "mut_light_positive",
+		"description": "Световая мутация",
+		"trigger_stat": "Light",
+		"trigger_type": "positive",
+		"update_time": 3.0,
+		"stat_change": {
+			"Light": -1.5,
+			"Food": 1.0
+		}
+	},
+	{
+		"id": "mut_light_negative",
+		"description": "Темновая мутация",
+		"trigger_stat": "Light",
+		"trigger_type": "negative",
+		"update_time": 3.5,
+		"stat_change": {
+			"Light": 1.2,
+			"Food": -0.8
+		}
+	},
+	{
+		"id": "mut_food_positive",
+		"description": "Пищевая мутация",
+		"trigger_stat": "Food",
+		"trigger_type": "positive",
+		"update_time": 2.8,
+		"stat_change": {
+			"Food": -2.0,
+			"Moisture": 1.2
+		}
+	},
+	{
+		"id": "mut_food_negative",
+		"description": "Голодная мутация",
+		"trigger_stat": "Food",
+		"trigger_type": "negative",
+		"update_time": 3.2,
+		"stat_change": {
+			"Food": 1.5,
+			"Light": -0.6
+		}
+	},
+	{
+		"id": "mut_moisture_positive",
+		"description": "Влажная мутация",
+		"trigger_stat": "Moisture",
+		"trigger_type": "positive",
+		"update_time": 2.5,
+		"stat_change": {
+			"Moisture": -1.8,
+			"Light": 0.8
+		}
+	},
+	{
+		"id": "mut_moisture_negative",
+		"description": "Сухая мутация",
+		"trigger_stat": "Moisture",
+		"trigger_type": "negative",
+		"update_time": 3.0,
+		"stat_change": {
+			"Moisture": 2.0,
+			"Food": -1.0
+		}
+	},
+	{
+		"id": "mut_light_food_positive",
+		"description": "Фотосинтез",
+		"trigger_stat": "Light",
+		"trigger_type": "positive",
+		"update_time": 2.2,
+		"stat_change": {
+			"Light": -1.0,
+			"Food": 1.8,
+			"Moisture": -0.5
+		}
+	},
+	{
+		"id": "mut_food_moisture_negative",
+		"description": "Гниль",
+		"trigger_stat": "Moisture",
+		"trigger_type": "negative",
+		"update_time": 4.0,
+		"stat_change": {
+			"Moisture": -1.2,
+			"Food": -1.5,
+			"Light": -0.6
+		}
+	}
+]

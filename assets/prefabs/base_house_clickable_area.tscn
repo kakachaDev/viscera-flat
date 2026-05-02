@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bv3w0v2mhq0rw"]
+
+[ext_resource type="Texture2D" uid="uid://cr0e8p6ld8cmf" path="res://icon.svg" id="1_jpjlr"]
+[ext_resource type="Script" uid="uid://isialxh7i20i" path="res://scripts/base_house_part.gd" id="1_ncihm"]
+[ext_resource type="PackedScene" uid="uid://dgwc5eupuj0gu" path="res://assets/prefabs/change_stat_text_info.tscn" id="2_5c7lk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rarhs"]
+size = Vector2(128, 127)
+
+[node name="BaseHouseClickableArea" type="Area2D" unique_id=75998111]
+script = ExtResource("1_ncihm")
+change_stat_text_info_prefab = ExtResource("2_5c7lk")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=131713027]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_rarhs")
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1991676610]
+texture = ExtResource("1_jpjlr")

@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://ujliul6f23bk"]
+
+[ext_resource type="Script" uid="uid://dg7xml8cup8t0" path="res://scripts/main.gd" id="1_rvslj"]
+[ext_resource type="PackedScene" uid="uid://bv3w0v2mhq0rw" path="res://assets/prefabs/base_house_clickable_area.tscn" id="2_rvslj"]
+[ext_resource type="PackedScene" uid="uid://3uvusa376in7" path="res://assets/prefabs/base_stat_progress.tscn" id="3_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://blsy4gokb48qn" path="res://assets/prefabs/base_mutation_area.tscn" id="3_rarhs"]
+[ext_resource type="Script" uid="uid://balt5inkmaub2" path="res://scripts/tooltip.gd" id="5_vcsgt"]
+[ext_resource type="Script" uid="uid://cerqws684bb2u" path="res://scripts/end_game.gd" id="6_c01mt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c01mt"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("parts", "mutations")]
+script = ExtResource("1_rvslj")
+parts = [NodePath("House/Parts/BaseHouseClickableArea"), NodePath("House/Parts/BaseHouseClickableArea2"), NodePath("House/Parts/BaseHouseClickableArea3"), NodePath("House/Parts/BaseHouseClickableArea4"), NodePath("House/Parts/BaseHouseClickableArea5"), NodePath("House/Parts/BaseHouseClickableArea6"), NodePath("House/Parts/BaseHouseClickableArea7"), NodePath("House/Parts/BaseHouseClickableArea8")]
+mutations = [NodePath("House/Mutations/BaseMutationArea"), NodePath("House/Mutations/BaseMutationArea2"), NodePath("House/Mutations/BaseMutationArea3"), NodePath("House/Mutations/BaseMutationArea4"), NodePath("House/Mutations/BaseMutationArea5"), NodePath("House/Mutations/BaseMutationArea6"), NodePath("House/Mutations/BaseMutationArea7"), NodePath("House/Mutations/BaseMutationArea8")]
+
+[node name="House" type="Node2D" parent="." unique_id=785040501]
+
+[node name="Parts" type="Node" parent="House" unique_id=1027481682]
+
+[node name="BaseHouseClickableArea" parent="House/Parts" unique_id=75998111 instance=ExtResource("2_rvslj")]
+position = Vector2(1362, 907)
+
+[node name="BaseHouseClickableArea2" parent="House/Parts" unique_id=1515508204 instance=ExtResource("2_rvslj")]
+position = Vector2(1355, 770)
+
+[node name="BaseHouseClickableArea3" parent="House/Parts" unique_id=1840358301 instance=ExtResource("2_rvslj")]
+position = Vector2(1368, 623)
+
+[node name="BaseHouseClickableArea4" parent="House/Parts" unique_id=1526822850 instance=ExtResource("2_rvslj")]
+position = Vector2(1367, 473)
+
+[node name="BaseHouseClickableArea5" parent="House/Parts" unique_id=1101391252 instance=ExtResource("2_rvslj")]
+position = Vector2(1587, 903)
+
+[node name="BaseHouseClickableArea6" parent="House/Parts" unique_id=324784114 instance=ExtResource("2_rvslj")]
+position = Vector2(1583, 740)
+
+[node name="BaseHouseClickableArea7" parent="House/Parts" unique_id=118161282 instance=ExtResource("2_rvslj")]
+position = Vector2(1571, 584)
+
+[node name="BaseHouseClickableArea8" parent="House/Parts" unique_id=1300598298 instance=ExtResource("2_rvslj")]
+position = Vector2(1569, 432)
+
+[node name="Mutations" type="Node" parent="House" unique_id=1634255564]
+
+[node name="BaseMutationArea" parent="House/Mutations" unique_id=1425143805 instance=ExtResource("3_rarhs")]
+visible = false
+position = Vector2(500, 875)
+
+[node name="BaseMutationArea2" parent="House/Mutations" unique_id=126731364 instance=ExtResource("3_rarhs")]
+visible = false
+position = Vector2(516, 695)
+
+[node name="BaseMutationArea3" parent="House/Mutations" unique_id=410331434 instance=ExtResource("3_rarhs")]
+visible = false
+position = Vector2(528, 535)
+
+[node name="BaseMutationArea4" parent="House/Mutations" unique_id=331879341 instance=ExtResource("3_rarhs")]
+visible = false
+position = Vector2(537, 370)
+
+[node name="BaseMutationArea5" parent="House/Mutations" unique_id=1991671571 instance=ExtResource("3_rarhs")]
+visible = false
+position = Vector2(666, 872)
+
+[node name="BaseMutationArea6" parent="House/Mutations" unique_id=1532758501 instance=ExtResource("3_rarhs")]
+visible = false
+position = Vector2(710, 658)
+
+[node name="BaseMutationArea7" parent="House/Mutations" unique_id=187347661 instance=ExtResource("3_rarhs")]
+visible = false
+position = Vector2(697, 497)
+
+[node name="BaseMutationArea8" parent="House/Mutations" unique_id=2038822680 instance=ExtResource("3_rarhs")]
+visible = false
+position = Vector2(732, 304)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=457209735]
+
+[node name="Game" type="Control" parent="UI" unique_id=813829308]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Stats" type="HBoxContainer" parent="UI/Game" unique_id=2078103119]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -79.0
+offset_right = 208.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Moisture" parent="UI/Game/Stats" unique_id=73431995 node_paths=PackedStringArray("ticker") instance=ExtResource("3_0bbpv")]
+self_modulate = Color(0, 0.8509804, 0.7764706, 1)
+layout_mode = 2
+stat = 2
+ticker = NodePath("../../../..")
+
+[node name="Food" parent="UI/Game/Stats" unique_id=1921085931 node_paths=PackedStringArray("ticker") instance=ExtResource("3_0bbpv")]
+self_modulate = Color(1, 0.5964007, 0.72456867, 1)
+layout_mode = 2
+stat = 1
+ticker = NodePath("../../../..")
+
+[node name="Light" parent="UI/Game/Stats" unique_id=220813740 node_paths=PackedStringArray("ticker") instance=ExtResource("3_0bbpv")]
+self_modulate = Color(0.8192126, 0.7501976, 7.70092e-07, 1)
+layout_mode = 2
+ticker = NodePath("../../../..")
+
+[node name="Tooltip" type="PanelContainer" parent="UI/Game" unique_id=403723002]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 92.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c01mt")
+script = ExtResource("5_vcsgt")
+
+[node name="Text" type="RichTextLabel" parent="UI/Game/Tooltip" unique_id=2064062258]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="EndGame" type="Panel" parent="UI/Game" unique_id=1137422834]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_c01mt")
+
+[node name="Text" type="RichTextLabel" parent="UI/Game/EndGame" unique_id=1340746949]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Результат мутаций:
+
+Продуктивность: 85%
+Стабильность: 25%
+Странность: 70%
+
+Безумный урожай: растения плодоносят, но вы не знаете чем именно..."
+horizontal_alignment = 1
+vertical_alignment = 1

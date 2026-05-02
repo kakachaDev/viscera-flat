@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dgwc5eupuj0gu"]
+
+[ext_resource type="Script" uid="uid://c8bqi52jb1yjd" path="res://scripts/change_stat_text_info.gd" id="1_doe8k"]
+
+[node name="ChangeStatTextInfo" type="RichTextLabel" unique_id=662150045]
+offset_left = 638.0
+offset_top = 403.0
+offset_right = 838.0
+offset_bottom = 477.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.7529412)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[color=#22ff33]???[/color]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_doe8k")
+speed = 64.0
