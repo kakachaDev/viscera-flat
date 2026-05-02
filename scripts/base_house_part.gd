@@ -4,7 +4,7 @@ class_name BaseHousePart
 @export var change_stat_text_info_prefab : PackedScene
 
 var _part_data: HousePartData
-var _current_state: int = 1
+var _current_state: int = 0
 var _current_timer = 0
 
 const HOLD_DURATION := 0.9
@@ -12,8 +12,6 @@ const HOLD_SHOW_DELAY := 0.3
 const CLICK_THRESHOLD := 0.15
 
 static var _cursor_owner: Node = null
-
-var _ticker: HouseStatsTicker = null
 
 var _is_holding := false
 var _hold_timer := 0.0
@@ -65,23 +63,14 @@ func _process(delta: float) -> void:
 	if not _is_holding:
 		return
 	_hold_timer += delta
-	if _hold_timer >= HOLD_SHOW_DELAY:
-		var can_upgrade := _current_state < _part_data.stat_change.size() - 1 \
-			and _ticker != null and _ticker.has_food(_part_data.upgrade_cost)
-		if can_upgrade:
-			_hold_indicator.show()
-			_hold_indicator.progress = minf(
-				(_hold_timer - HOLD_SHOW_DELAY) / (HOLD_DURATION - HOLD_SHOW_DELAY), 1.0)
-		else:
-			_hold_indicator.hide()
+	if _hold_timer >= HOLD_SHOW_DELAY and _current_state < _part_data.stat_change.size() - 1:
+		_hold_indicator.show()
+		_hold_indicator.progress = minf(
+			(_hold_timer - HOLD_SHOW_DELAY) / (HOLD_DURATION - HOLD_SHOW_DELAY), 1.0)
 	if _hold_timer >= HOLD_DURATION:
-		if _current_state < _part_data.stat_change.size() - 1 and _ticker != null:
-			if _ticker.try_spend_food(_part_data.upgrade_cost):
-				_current_state += 1
-				_update_tooltip()
-				_spawn_food_floater(_part_data.upgrade_cost)
-			else:
-				_spawn_insufficient_food()
+		if _current_state < _part_data.stat_change.size() - 1:
+			_current_state += 1
+			_update_tooltip()
 		_cancel_hold()
 
 func _start_hold() -> void:
@@ -101,44 +90,21 @@ func _release_hold() -> void:
 		return
 	var was_click := _hold_timer < CLICK_THRESHOLD
 	_cancel_hold()
-	if was_click and _current_state > 0 and _ticker != null:
-		if _ticker.try_spend_food(_part_data.downgrade_cost):
-			_current_state -= 1
-			_update_tooltip()
-			_spawn_food_floater(_part_data.downgrade_cost)
-		else:
-			_spawn_insufficient_food()
-
-func _spawn_food_floater(cost: int) -> void:
-	if not change_stat_text_info_prefab:
-		return
-	var floater := change_stat_text_info_prefab.instantiate() as ChangeStatTextInfo
-	floater.set_stats({GameEnums.StatType.Food: -float(cost)})
-	add_child(floater)
-	floater.position = -floater.size / 2
-
-func _spawn_insufficient_food() -> void:
-	if not change_stat_text_info_prefab:
-		return
-	var floater := change_stat_text_info_prefab.instantiate() as ChangeStatTextInfo
-	floater.set_insufficient(GameEnums.StatType.Food)
-	add_child(floater)
-	floater.position = -floater.size / 2
+	if was_click and _current_state > 0:
+		_current_state -= 1
+		_update_tooltip()
 
 func set_part_data(data: HousePartData) -> void:
 	_part_data = data
 	_current_state = min(_part_data.start_state, _part_data.stat_change.size() - 1)
 	_current_timer = randf() * _part_data.update_time
 
-func tick(delta: float, ticker: HouseStatsTicker) -> Variant:
-	if _ticker == null:
-		_ticker = ticker
+func tick(delta: float) -> Variant:
 	_current_timer += delta
 	if _current_timer >= _part_data.update_time:
 		_current_timer -= _part_data.update_time
 		var stats = _part_data.stat_change[_current_state].stat_changes.duplicate()
 		for stat_key in stats.keys():
-			stats[stat_key] = stats.get(stat_key, 0)
 			if stats[stat_key] == 0:
 				stats.erase(stat_key)
 		if stats.size() > 0:

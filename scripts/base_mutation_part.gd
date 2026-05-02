@@ -29,7 +29,7 @@ func set_part_data(data: MutationPartData):
 	_part_data = data
 	_current_timer = randf() * _part_data.update_time
 
-func tick(delta: float, ticker: HouseStatsTicker) -> Variant:
+func tick(delta: float) -> Variant:
 	if not is_visible_in_tree(): return
 	
 	_current_timer += delta

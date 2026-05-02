@@ -3,254 +3,108 @@
 		"description": "Солнечная батарея",
 		"update_time": 2.0,
 		"start_state": 1,
-		"downgrade_cost": 8,
-		"upgrade_cost": 15,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 3.0,
-					"Moisture": -1.5,
-					"Food": 1.0
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -1.5,
-					"Moisture": 2.5,
-					"Food": 1.0
-				}
-			}
+			{ "stat_changes": { "Light": 3.0, "Moisture": -1.5 } },
+			{ "stat_changes": { "Light": -1.5, "Moisture": 2.5 } }
 		]
 	},
 	{
 		"description": "Компостный бак",
 		"update_time": 2.5,
 		"start_state": 0,
-		"downgrade_cost": 5,
-		"upgrade_cost": 10,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 1.5,
-					"Moisture": -2.0
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -2.0,
-					"Moisture": 1.5
-				}
-			}
+			{ "stat_changes": { "Light": 1.5, "Moisture": -2.0 } },
+			{ "stat_changes": { "Light": -2.0, "Moisture": 1.5 } }
 		]
 	},
 	{
 		"description": "Осушитель",
 		"update_time": 0.9,
 		"start_state": 0,
-		"downgrade_cost": 6,
-		"upgrade_cost": 12,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 1.2,
-					"Moisture": -2.0
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -0.8,
-					"Moisture": 0.8
-				}
-			}
+			{ "stat_changes": { "Light": 1.2, "Moisture": -2.0 } },
+			{ "stat_changes": { "Light": -0.8, "Moisture": 0.8 } }
 		]
 	},
 	{
 		"description": "Увлажнитель",
 		"update_time": 1.5,
 		"start_state": 1,
-		"downgrade_cost": 7,
-		"upgrade_cost": 14,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 1.8,
-					"Moisture": -1.2
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -1.2,
-					"Moisture": 2.5
-				}
-			}
+			{ "stat_changes": { "Light": 1.8, "Moisture": -1.2 } },
+			{ "stat_changes": { "Light": -1.2, "Moisture": 2.5 } }
 		]
 	},
 	{
 		"description": "Фитолампа",
 		"update_time": 0.8,
 		"start_state": 1,
-		"downgrade_cost": 5,
-		"upgrade_cost": 10,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 1.6,
-					"Moisture": -1.2
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -1.2,
-					"Moisture": 0.8
-				}
-			}
+			{ "stat_changes": { "Light": 1.6, "Moisture": -1.2 } },
+			{ "stat_changes": { "Light": -1.2, "Moisture": 0.8 } }
 		]
 	},
 	{
 		"description": "Червеферма",
 		"update_time": 3.0,
 		"start_state": 0,
-		"downgrade_cost": 10,
-		"upgrade_cost": 20,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 2.5,
-					"Moisture": -2.0
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -2.0,
-					"Moisture": 3.0
-				}
-			}
+			{ "stat_changes": { "Light": 2.5, "Moisture": -2.0 } },
+			{ "stat_changes": { "Light": -2.0, "Moisture": 3.0 } }
 		]
 	},
 	{
 		"description": "Вентилятор",
 		"update_time": 1.8,
 		"start_state": 1,
-		"downgrade_cost": 6,
-		"upgrade_cost": 12,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 2.0,
-					"Moisture": -2.5
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -1.5,
-					"Moisture": 1.5
-				}
-			}
+			{ "stat_changes": { "Light": 2.0, "Moisture": -2.5 } },
+			{ "stat_changes": { "Light": -1.5, "Moisture": 1.5 } }
 		]
 	},
 	{
 		"description": "Биореактор",
 		"update_time": 2.2,
 		"start_state": 1,
-		"downgrade_cost": 12,
-		"upgrade_cost": 18,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 2.5,
-					"Moisture": -2.0
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -2.5,
-					"Moisture": 3.0
-				}
-			}
+			{ "stat_changes": { "Light": 2.5, "Moisture": -2.0 } },
+			{ "stat_changes": { "Light": -2.5, "Moisture": 3.0 } }
 		]
 	},
 	{
 		"description": "Тепловой насос",
 		"update_time": 1.4,
 		"start_state": 0,
-		"downgrade_cost": 8,
-		"upgrade_cost": 15,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 1.5,
-					"Moisture": -1.8
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -1.8,
-					"Moisture": 1.5
-				}
-			}
+			{ "stat_changes": { "Light": 1.5, "Moisture": -1.8 } },
+			{ "stat_changes": { "Light": -1.8, "Moisture": 1.5 } }
 		]
 	},
 	{
 		"description": "Капельный полив",
 		"update_time": 2.8,
 		"start_state": 1,
-		"downgrade_cost": 7,
-		"upgrade_cost": 14,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 2.0,
-					"Moisture": -1.5
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -1.5,
-					"Moisture": 3.5
-				}
-			}
+			{ "stat_changes": { "Light": 2.0, "Moisture": -1.5 } },
+			{ "stat_changes": { "Light": -1.5, "Moisture": 3.5 } }
 		]
 	},
 	{
 		"description": "Ультразвуковой отпугиватель",
 		"update_time": 0.7,
 		"start_state": 0,
-		"downgrade_cost": 5,
-		"upgrade_cost": 8,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 0.8,
-					"Moisture": -1.0
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -0.8,
-					"Moisture": 0.7
-				}
-			}
+			{ "stat_changes": { "Light": 0.8, "Moisture": -1.0 } },
+			{ "stat_changes": { "Light": -0.8, "Moisture": 0.7 } }
 		]
 	},
 	{
 		"description": "Светоотражатель",
 		"update_time": 1.1,
 		"start_state": 0,
-		"downgrade_cost": 6,
-		"upgrade_cost": 10,
 		"stat_change": [
-			{
-				"stat_changes": {
-					"Light": 1.5,
-					"Moisture": -0.8
-				}
-			},
-			{
-				"stat_changes": {
-					"Light": -0.8,
-					"Moisture": 1.8
-				}
-			}
+			{ "stat_changes": { "Light": 1.5, "Moisture": -0.8 } },
+			{ "stat_changes": { "Light": -0.8, "Moisture": 1.8 } }
 		]
 	}
 ]

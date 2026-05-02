@@ -8,7 +8,6 @@ const GAME_DURATION := 300.0
 
 var _stats: Dictionary[GameEnums.StatType, float] = {
 	GameEnums.StatType.Light: 50,
-	GameEnums.StatType.Food: 50,
 	GameEnums.StatType.Moisture: 50
 }
 
@@ -43,9 +42,9 @@ func _base_update_stats(delta: float) -> void:
 		return
 
 	for part in parts:
-		_change_stat(part.tick(delta, self))
+		_change_stat(part.tick(delta))
 	for part in mutations:
-		_change_stat(part.tick(delta, self))
+		_change_stat(part.tick(delta))
 
 	if _stats_changed:
 		on_stats_changed.emit(_stats)
@@ -123,7 +122,6 @@ func _get_zero_stat_reason(stat: GameEnums.StatType) -> String:
 	match stat:
 		GameEnums.StatType.Moisture: return "Засуха"
 		GameEnums.StatType.Light:    return "Темнота"
-		GameEnums.StatType.Food:     return "Голод"
 		_:                           return "Катастрофа"
 
 func _show_end_game() -> void:
@@ -132,16 +130,6 @@ func _show_end_game() -> void:
 		if mutation._part_data != null:
 			spawned.append(mutation._part_data)
 	EndGame.instance.show_end_game(_impacts, spawned)
-
-func has_food(amount: float) -> bool:
-	return _stats[GameEnums.StatType.Food] >= amount
-
-func try_spend_food(amount: float) -> bool:
-	if _stats[GameEnums.StatType.Food] < amount:
-		return false
-	_stats[GameEnums.StatType.Food] = maxf(0.0, _stats[GameEnums.StatType.Food] - amount)
-	_stats_changed = true
-	return true
 
 func _change_stat(new_stats) -> void:
 	if new_stats == null:

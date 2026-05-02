@@ -3,20 +3,16 @@ extends Node
 
 enum StatType {
 	Light,
-	Food,
 	Moisture
 }
 
 static var StatColor : Dictionary[StatType, Color] = {
 	StatType.Light : Color.GOLD,
-	StatType.Food : Color.CORAL,
 	StatType.Moisture : Color.DEEP_SKY_BLUE
 }
 
-
 static var StatName : Dictionary[StatType, String] = {
 	StatType.Light : "Освещение",
-	StatType.Food : "Пища",
 	StatType.Moisture : "Влажность"
 }
 

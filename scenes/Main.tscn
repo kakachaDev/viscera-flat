@@ -135,12 +135,6 @@ alignment = 1
 [node name="Moisture" parent="UI/Game/Stats" unique_id=73431995 node_paths=PackedStringArray("ticker") instance=ExtResource("3_0bbpv")]
 self_modulate = Color(0, 0.8509804, 0.7764706, 1)
 layout_mode = 2
-stat = 2
-ticker = NodePath("../../../..")
-
-[node name="Food" parent="UI/Game/Stats" unique_id=1921085931 node_paths=PackedStringArray("ticker") instance=ExtResource("3_0bbpv")]
-self_modulate = Color(1, 0.5964007, 0.72456867, 1)
-layout_mode = 2
 stat = 1
 ticker = NodePath("../../../..")
 

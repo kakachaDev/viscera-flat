@@ -4,81 +4,55 @@
 		"description": "Световая мутация",
 		"conditions": { "Light_min": 65 },
 		"update_time": 3.0,
-		"stat_change": {
-			"Light": -1.5,
-			"Food": 1.0
-		}
+		"stat_change": { "Light": -1.5, "Moisture": 0.8 }
 	},
 	{
 		"id": "mut_low_light",
 		"description": "Темновая мутация",
 		"conditions": { "Light_max": 35 },
 		"update_time": 3.5,
-		"stat_change": {
-			"Light": 1.2,
-			"Food": -0.8
-		}
+		"stat_change": { "Light": 1.2, "Moisture": -0.5 }
 	},
 	{
-		"id": "mut_high_food",
-		"description": "Пищевая мутация",
-		"conditions": { "Food_min": 65 },
+		"id": "mut_wet",
+		"description": "Влажная активность",
+		"conditions": { "Moisture_min": 75 },
 		"update_time": 2.8,
-		"stat_change": {
-			"Food": -2.0,
-			"Moisture": 1.2
-		}
+		"stat_change": { "Moisture": -2.0, "Light": 1.0 }
 	},
 	{
-		"id": "mut_low_food",
-		"description": "Голодная мутация",
-		"conditions": { "Food_max": 35 },
+		"id": "mut_bright_dry",
+		"description": "Засветление",
+		"conditions": { "Light_min": 70, "Moisture_max": 30 },
 		"update_time": 3.2,
-		"stat_change": {
-			"Food": 1.5,
-			"Light": -0.6
-		}
+		"stat_change": { "Light": -1.5, "Moisture": 1.5 }
 	},
 	{
 		"id": "mut_high_moisture",
 		"description": "Влажная мутация",
 		"conditions": { "Moisture_min": 65 },
 		"update_time": 2.5,
-		"stat_change": {
-			"Moisture": -1.8,
-			"Light": 0.8
-		}
+		"stat_change": { "Moisture": -1.8, "Light": 0.8 }
 	},
 	{
 		"id": "mut_low_moisture",
 		"description": "Сухая мутация",
 		"conditions": { "Moisture_max": 35 },
 		"update_time": 3.0,
-		"stat_change": {
-			"Moisture": 2.0,
-			"Food": -1.0
-		}
+		"stat_change": { "Moisture": 2.0 }
 	},
 	{
 		"id": "mut_photosynthesis",
 		"description": "Фотосинтез",
 		"conditions": { "Light_min": 60, "Moisture_min": 60 },
 		"update_time": 2.2,
-		"stat_change": {
-			"Light": -1.0,
-			"Food": 1.8,
-			"Moisture": -0.5
-		}
+		"stat_change": { "Light": -1.0, "Moisture": -0.5 }
 	},
 	{
 		"id": "mut_rot",
 		"description": "Гниль",
-		"conditions": { "Moisture_max": 30, "Food_min": 70 },
+		"conditions": { "Moisture_max": 30, "Light_min": 70 },
 		"update_time": 4.0,
-		"stat_change": {
-			"Moisture": -1.2,
-			"Food": -1.5,
-			"Light": -0.6
-		}
+		"stat_change": { "Moisture": -1.2, "Light": -0.6 }
 	}
 ]

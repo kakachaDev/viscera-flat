@@ -15,10 +15,6 @@ func set_stats(stats: Dictionary[GameEnums.StatType, float]):
 		])
 	text = " ".join(text_parts)
 
-func set_insufficient(stat: GameEnums.StatType) -> void:
-	var color := (GameEnums.StatColor.get(stat, Color.WHITE) as Color).to_html()
-	var stat_name := GameEnums.StatName.get(stat, GameEnums.StatType.find_key(stat)) as String
-	text = "[font_size=16]Недостаточно [color=%s]%s[/color][/font_size]" % [color, stat_name]
 
 func _ready() -> void:
 	var tween = get_tree().create_tween()
