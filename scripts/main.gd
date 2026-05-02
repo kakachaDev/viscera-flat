@@ -52,7 +52,11 @@ func _activate_stage(stage: int) -> void:
 	_stage_grafted_count = 0
 
 	for i in cells.size():
-		cells[i].set_active(i / CELLS_PER_STAGE == stage)
+		var is_current := i / CELLS_PER_STAGE == stage
+		if is_current:
+			cells[i].set_active(true)
+		elif cells[i]._state != GraftCell.State.GRAFTED:
+			cells[i].set_active(false)
 
 	_deal_cards()
 	_update_hud()
