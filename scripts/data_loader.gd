@@ -60,9 +60,9 @@ static func load_mutations_from_json(file_path: String) -> Array[MutationPartDat
 		var mut = MutationPartData.new()
 		mut.id = mut_data.get("id", "")
 		mut.description = mut_data.get("description", "")
-		mut.trigger_stat = _string_to_stat_type(mut_data.get("trigger_stat", ""))
-		mut.trigger_type = mut_data.get("trigger_type", "")
 		mut.update_time = mut_data.get("update_time", 1.0)
+		for condition_key in mut_data.get("conditions", {}).keys():
+			mut.conditions[condition_key] = float(mut_data["conditions"][condition_key])
 		
 		for stat_name in mut_data.get("stat_change", {}):
 			var stat_type = _string_to_stat_type(stat_name)

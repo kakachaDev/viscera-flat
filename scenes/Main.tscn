@@ -23,10 +23,12 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("parts", "mutations")]
+[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("parts", "mutations", "hud_timer_label", "hud_mutation_count_label")]
 script = ExtResource("1_rvslj")
 parts = [NodePath("House/Parts/BaseHouseClickableArea"), NodePath("House/Parts/BaseHouseClickableArea2"), NodePath("House/Parts/BaseHouseClickableArea3"), NodePath("House/Parts/BaseHouseClickableArea4"), NodePath("House/Parts/BaseHouseClickableArea5"), NodePath("House/Parts/BaseHouseClickableArea6"), NodePath("House/Parts/BaseHouseClickableArea7"), NodePath("House/Parts/BaseHouseClickableArea8")]
 mutations = [NodePath("House/Mutations/BaseMutationArea"), NodePath("House/Mutations/BaseMutationArea2"), NodePath("House/Mutations/BaseMutationArea3"), NodePath("House/Mutations/BaseMutationArea4"), NodePath("House/Mutations/BaseMutationArea5"), NodePath("House/Mutations/BaseMutationArea6"), NodePath("House/Mutations/BaseMutationArea7"), NodePath("House/Mutations/BaseMutationArea8")]
+hud_timer_label = NodePath("UI/Game/HUD/TimerLabel")
+hud_mutation_count_label = NodePath("UI/Game/HUD/MutationCountLabel")
 
 [node name="House" type="Node2D" parent="." unique_id=785040501]
 
@@ -147,6 +149,22 @@ layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
 fit_content = true
+
+[node name="HUD" type="VBoxContainer" parent="UI/Game" unique_id=500100001]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 240.0
+offset_bottom = 80.0
+theme_override_constants/separation = 4
+
+[node name="TimerLabel" type="Label" parent="UI/Game/HUD" unique_id=500100002]
+layout_mode = 2
+text = "5:00"
+
+[node name="MutationCountLabel" type="Label" parent="UI/Game/HUD" unique_id=500100003]
+layout_mode = 2
+text = "Мутации: 0/8"
 
 [node name="EndGame" type="Panel" parent="UI/Game" unique_id=1137422834]
 visible = false

@@ -1,9 +1,8 @@
 [
 	{
-		"id": "mut_light_positive",
+		"id": "mut_high_light",
 		"description": "Световая мутация",
-		"trigger_stat": "Light",
-		"trigger_type": "positive",
+		"conditions": { "Light_min": 65 },
 		"update_time": 3.0,
 		"stat_change": {
 			"Light": -1.5,
@@ -11,10 +10,9 @@
 		}
 	},
 	{
-		"id": "mut_light_negative",
+		"id": "mut_low_light",
 		"description": "Темновая мутация",
-		"trigger_stat": "Light",
-		"trigger_type": "negative",
+		"conditions": { "Light_max": 35 },
 		"update_time": 3.5,
 		"stat_change": {
 			"Light": 1.2,
@@ -22,10 +20,9 @@
 		}
 	},
 	{
-		"id": "mut_food_positive",
+		"id": "mut_high_food",
 		"description": "Пищевая мутация",
-		"trigger_stat": "Food",
-		"trigger_type": "positive",
+		"conditions": { "Food_min": 65 },
 		"update_time": 2.8,
 		"stat_change": {
 			"Food": -2.0,
@@ -33,10 +30,9 @@
 		}
 	},
 	{
-		"id": "mut_food_negative",
+		"id": "mut_low_food",
 		"description": "Голодная мутация",
-		"trigger_stat": "Food",
-		"trigger_type": "negative",
+		"conditions": { "Food_max": 35 },
 		"update_time": 3.2,
 		"stat_change": {
 			"Food": 1.5,
@@ -44,10 +40,9 @@
 		}
 	},
 	{
-		"id": "mut_moisture_positive",
+		"id": "mut_high_moisture",
 		"description": "Влажная мутация",
-		"trigger_stat": "Moisture",
-		"trigger_type": "positive",
+		"conditions": { "Moisture_min": 65 },
 		"update_time": 2.5,
 		"stat_change": {
 			"Moisture": -1.8,
@@ -55,10 +50,9 @@
 		}
 	},
 	{
-		"id": "mut_moisture_negative",
+		"id": "mut_low_moisture",
 		"description": "Сухая мутация",
-		"trigger_stat": "Moisture",
-		"trigger_type": "negative",
+		"conditions": { "Moisture_max": 35 },
 		"update_time": 3.0,
 		"stat_change": {
 			"Moisture": 2.0,
@@ -66,10 +60,9 @@
 		}
 	},
 	{
-		"id": "mut_light_food_positive",
+		"id": "mut_photosynthesis",
 		"description": "Фотосинтез",
-		"trigger_stat": "Light",
-		"trigger_type": "positive",
+		"conditions": { "Light_min": 60, "Moisture_min": 60 },
 		"update_time": 2.2,
 		"stat_change": {
 			"Light": -1.0,
@@ -78,10 +71,9 @@
 		}
 	},
 	{
-		"id": "mut_food_moisture_negative",
+		"id": "mut_rot",
 		"description": "Гниль",
-		"trigger_stat": "Moisture",
-		"trigger_type": "negative",
+		"conditions": { "Moisture_max": 30, "Food_min": 70 },
 		"update_time": 4.0,
 		"stat_change": {
 			"Moisture": -1.2,
