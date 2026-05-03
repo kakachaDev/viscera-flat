@@ -36,12 +36,14 @@ func _ready() -> void:
 	input_event.connect(_on_input_event)
 
 	_hold_indicator = HoldProgressIndicator.new()
+	_hold_indicator.z_index = 5
 	_hold_indicator.hide()
 	add_child(_hold_indicator)
 
 	_graft_indicator = HoldProgressIndicator.new()
 	_graft_indicator.radius = 22.0
 	_graft_indicator.width = 4.0
+	_graft_indicator.z_index = 5
 	_graft_indicator.hide()
 	add_child(_graft_indicator)
 
@@ -123,7 +125,7 @@ func _tick_grafting(delta: float, current_stats: Dictionary) -> Variant:
 		_succeed_graft()
 		return null
 
-	return _tick_passive(delta, 0)
+	return null
 
 func _tick_grafted(delta: float) -> Variant:
 	if _grafted_mutation == null:
@@ -145,6 +147,8 @@ func _spawn_stat_text(stats: Dictionary) -> void:
 		return
 	var text := change_stat_text_info_prefab.instantiate() as ChangeStatTextInfo
 	text.set_stats(stats)
+	text.z_as_relative = false
+	text.z_index = 100
 	add_child(text)
 	text.position = -text.size / 2
 
