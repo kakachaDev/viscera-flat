@@ -29,6 +29,7 @@ var _hold_timer := 0.0
 var _hold_indicator: HoldProgressIndicator
 var _graft_indicator: HoldProgressIndicator
 var _mutation_node: Node = null
+var _mutation_idle_tween: Tween = null
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -169,9 +170,29 @@ func _spawn_mutation_prefab() -> void:
 		return
 	var packed := load(prefab_path) as PackedScene
 	_mutation_node = packed.instantiate()
-	if mirrored:
-		_mutation_node.scale.x = -1.0
+	var sign_x := -1.0 if mirrored else 1.0
+	_mutation_node.scale = Vector2(sign_x * 0.1, 0.1)
+	_mutation_node.rotation = deg_to_rad(-22.0)
 	add_child(_mutation_node)
+	var tween := create_tween()
+	tween.tween_property(_mutation_node, "scale", Vector2(sign_x, 1.0), 0.45) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
+	tween.parallel().tween_property(_mutation_node, "rotation", 0.0, 0.45) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
+	tween.tween_callback(_start_mutation_idle)
+
+func _start_mutation_idle() -> void:
+	if not is_instance_valid(_mutation_node):
+		return
+	if _mutation_idle_tween and _mutation_idle_tween.is_valid():
+		_mutation_idle_tween.kill()
+	var angle := deg_to_rad(randf_range(1.2, 2.5))
+	var dur := randf_range(1.8, 2.8)
+	_mutation_idle_tween = create_tween().set_loops()
+	_mutation_idle_tween.tween_property(_mutation_node, "rotation", angle, dur) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	_mutation_idle_tween.tween_property(_mutation_node, "rotation", -angle, dur * randf_range(0.85, 1.15)) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 
 func _fail_graft() -> void:
 	var mutation := _grafted_mutation
@@ -180,6 +201,9 @@ func _fail_graft() -> void:
 	_graft_timer = 0.0
 	_graft_indicator.hide()
 	_graft_indicator.progress = 0.0
+	if _mutation_idle_tween and _mutation_idle_tween.is_valid():
+		_mutation_idle_tween.kill()
+	_mutation_idle_tween = null
 	if _mutation_node != null:
 		_mutation_node.queue_free()
 		_mutation_node = null

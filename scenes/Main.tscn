@@ -30,12 +30,14 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("cells", "card_tray", "hud_stage_label", "hud_grafted_label")]
+[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("cells", "card_tray", "hud_stage_label", "hud_grafted_label", "house_tree", "window_indicator")]
 script = ExtResource("1_rvslj")
 cells = [NodePath("House/Parts/BaseHouseClickableArea"), NodePath("House/Parts/BaseHouseClickableArea2"), NodePath("House/Parts/BaseHouseClickableArea3"), NodePath("House/Parts/BaseHouseClickableArea4"), NodePath("House/Parts/BaseHouseClickableArea5"), NodePath("House/Parts/BaseHouseClickableArea6"), NodePath("House/Parts/BaseHouseClickableArea7"), NodePath("House/Parts/BaseHouseClickableArea8")]
 card_tray = NodePath("UI/Game/CardTray")
 hud_stage_label = NodePath("UI/Game/HUD/StageLabel")
 hud_grafted_label = NodePath("UI/Game/HUD/GraftedLabel")
+house_tree = NodePath("House/Домдерево")
+window_indicator = NodePath("House/Домдерево/Window/WindowIndicator")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=955830104]
 position = Vector2(986, 497)

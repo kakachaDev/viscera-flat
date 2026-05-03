@@ -17,6 +17,8 @@ var _stats: Dictionary[GameEnums.StatType, float] = {
 @export var card_tray: Control
 @export var hud_stage_label: Label
 @export var hud_grafted_label: Label
+@export var house_tree: Sprite2D
+@export var window_indicator: Sprite2D
 
 var mutation_card_prefab: PackedScene
 
@@ -45,6 +47,7 @@ func _ready() -> void:
 	_mutation_data = DataLoader.load_mutations_from_json("res://data/mutations.json")
 	_impacts = DataLoader.load_meta_impacts_from_json("res://data/mutation_meta_impact.json")
 
+	on_stats_changed.connect(_update_window_indicator)
 	_base_update_stats(UPDATE_TIME)
 	call_deferred("_activate_stage", 0)
 
@@ -61,6 +64,7 @@ func _activate_stage(stage: int) -> void:
 
 	_deal_cards()
 	_update_hud()
+	_animate_house_tree(stage)
 
 func _deal_cards() -> void:
 	for child in card_tray.get_children():
@@ -156,6 +160,20 @@ func _show_end_game() -> void:
 		if cell._state == GraftCell.State.GRAFTED and cell._grafted_mutation != null:
 			grafted.append(cell._grafted_mutation)
 	EndGame.instance.show_end_game(_impacts, grafted)
+
+func _animate_house_tree(stage: int) -> void:
+	if house_tree == null:
+		return
+	var s := 1.0 + stage * 0.1
+	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
+	tween.tween_property(house_tree, "scale", Vector2(s, s), 0.3)
+
+func _update_window_indicator(stats: Dictionary) -> void:
+	if window_indicator == null:
+		return
+	var t := stats.get(GameEnums.StatType.Moisture, 50.0) / 100.0
+	window_indicator.scale.y = t
+	window_indicator.modulate = Color.WHITE.lerp(Color.MAGENTA, t)
 
 func _change_stat(new_stats) -> void:
 	if new_stats == null:
