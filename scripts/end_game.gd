@@ -18,7 +18,7 @@ func _ready() -> void:
 func _build_layout() -> void:
 	# Right half dark overlay
 	var overlay := ColorRect.new()
-	overlay.color = Color(0.04, 0.04, 0.07, 0.92)
+	overlay.color = Color(0.04, 0.04, 0.07, 1.0)
 	overlay.anchor_left = 0.5
 	overlay.anchor_top = 0.0
 	overlay.anchor_right = 1.0
