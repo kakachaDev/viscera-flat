@@ -19,6 +19,7 @@ var _stats: Dictionary[GameEnums.StatType, float] = {
 @export var hud_grafted_label: Label
 @export var house_tree: Sprite2D
 @export var window_indicator: Sprite2D
+@export var camera: Camera2D
 
 var mutation_card_prefab: PackedScene
 
@@ -190,6 +191,11 @@ func _show_end_game() -> void:
 	for flower in flowers:
 		get_tree().create_timer(delay).timeout.connect(_bloom_flower.bind(flower))
 		delay += 0.45
+
+	if camera != null:
+		var half_screen := get_viewport().get_visible_rect().size.x * 0.5 / camera.zoom.x
+		var cam_tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		cam_tween.tween_property(camera, "position:x", camera.position.x + half_screen, 1.2)
 
 	var captured_grafted := grafted
 	get_tree().create_timer(delay + 0.6).timeout.connect(

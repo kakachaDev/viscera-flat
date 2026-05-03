@@ -3,6 +3,8 @@ class_name MutationCard
 
 signal card_dropped(mutation: MutationPartData, screen_pos: Vector2)
 
+static var any_dragging: bool = false
+
 var _mutation: MutationPartData = null
 var _dragging := false
 var _drag_offset := Vector2.ZERO
@@ -50,6 +52,7 @@ func animate_in(target_pos: Vector2, delay: float = 0.0) -> void:
 
 func snap_back() -> void:
 	_dragging = false
+	MutationCard.any_dragging = false
 	z_index = 0
 	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(self, "position", _home_position, 0.2)
@@ -133,6 +136,9 @@ func _gui_input(event: InputEvent) -> void:
 
 func _start_drag() -> void:
 	_dragging = true
+	MutationCard.any_dragging = true
+	if Tooltip.instance:
+		Tooltip.instance.hide()
 	_kill_hover_tween()
 	position = _home_position
 	_drag_offset = Vector2(-10, -10)
@@ -143,6 +149,7 @@ func _start_drag() -> void:
 
 func _end_drag() -> void:
 	_dragging = false
+	MutationCard.any_dragging = false
 	z_index = 0
 	card_dropped.emit(_mutation, get_global_mouse_position())
 

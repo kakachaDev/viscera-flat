@@ -246,6 +246,8 @@ func _update_visuals() -> void:
 func _on_mouse_entered() -> void:
 	GraftCell._cursor_owner = self
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	if MutationCard.any_dragging:
+		return
 	Tooltip.instance.show_for(self)
 	_update_tooltip()
 
