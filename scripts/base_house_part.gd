@@ -149,7 +149,7 @@ func _spawn_stat_text(stats: Dictionary) -> void:
 	var text := change_stat_text_info_prefab.instantiate() as ChangeStatTextInfo
 	text.set_stats(stats)
 	text.z_as_relative = false
-	text.z_index = 100
+	text.z_index = 2000
 	add_child(text)
 	text.position = -text.size / 2
 

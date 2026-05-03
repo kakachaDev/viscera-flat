@@ -251,7 +251,7 @@ offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="EndGame" type="Panel" parent="UI/Game" unique_id=1137422834]
+[node name="EndGame" type="Control" parent="UI/Game" unique_id=1137422834]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -259,16 +259,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 script = ExtResource("6_c01mt")
-
-[node name="Text" type="RichTextLabel" parent="UI/Game/EndGame" unique_id=1340746949]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "Результат мутаций:"
-horizontal_alignment = 1
-vertical_alignment = 1

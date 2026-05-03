@@ -23,6 +23,7 @@ var _stats: Dictionary[GameEnums.StatType, float] = {
 var mutation_card_prefab: PackedScene
 
 var _active := true
+var _game_time: float = 0.0
 var _window_scale_target: float = 0.5
 var _window_color_target: float = 0.5
 var _stats_changed := false
@@ -177,7 +178,32 @@ func _show_end_game() -> void:
 	for cell in cells:
 		if cell._state == GraftCell.State.GRAFTED and cell._grafted_mutation != null:
 			grafted.append(cell._grafted_mutation)
-	EndGame.instance.show_end_game(_impacts, grafted)
+
+	var flowers: Array[Sprite2D] = []
+	if house_tree != null:
+		for child in house_tree.get_children():
+			if child is Sprite2D and (child.name as String).begins_with("Flower"):
+				flowers.append(child as Sprite2D)
+	flowers.sort_custom(func(a, b): return a.name < b.name)
+
+	var delay := 0.0
+	for flower in flowers:
+		get_tree().create_timer(delay).timeout.connect(_bloom_flower.bind(flower))
+		delay += 0.45
+
+	var captured_grafted := grafted
+	get_tree().create_timer(delay + 0.6).timeout.connect(
+		func(): EndGame.instance.show_end_game(_impacts, captured_grafted, _game_time))
+
+func _bloom_flower(flower: Sprite2D) -> void:
+	var target_scale := flower.scale
+	flower.scale = target_scale * 0.05
+	flower.modulate.a = 0.0
+	flower.show()
+	var tween := flower.create_tween()
+	tween.tween_property(flower, "scale", target_scale, 0.55) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
+	tween.parallel().tween_property(flower, "modulate:a", 1.0, 0.3)
 
 func _animate_house_tree(stage: int) -> void:
 	if house_tree == null:
@@ -191,6 +217,8 @@ func _update_window_indicator(stats: Dictionary) -> void:
 	_window_color_target = stats.get(GameEnums.StatType.Light, 50.0) / 100.0
 
 func _process(delta: float) -> void:
+	if _active:
+		_game_time += delta
 	if window_indicator == null:
 		return
 	window_indicator.scale.y = lerpf(window_indicator.scale.y, _window_scale_target, 5.0 * delta)
