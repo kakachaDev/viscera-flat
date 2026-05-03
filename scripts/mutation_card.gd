@@ -135,7 +135,7 @@ func _start_drag() -> void:
 	_dragging = true
 	_kill_hover_tween()
 	position = _home_position
-	_drag_offset = get_global_mouse_position() - global_position
+	_drag_offset = Vector2(-10, -10)
 	_drag_target = global_position
 	z_index = 100
 	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
