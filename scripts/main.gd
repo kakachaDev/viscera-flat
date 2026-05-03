@@ -195,7 +195,7 @@ func _show_end_game() -> void:
 
 	if camera != null:
 		var cam_tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-		cam_tween.tween_property(camera, "position:x", camera.position.x + 1700.0, 1.2)
+		cam_tween.tween_property(camera, "position:x", 1700.0, 1.2)
 
 	if stats_container != null:
 		stats_container.hide()
