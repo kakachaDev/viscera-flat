@@ -73,7 +73,6 @@ texture = ExtResource("5_mwfav")
 offset = Vector2(0, -105.37)
 
 [node name="Parts" type="Node2D" parent="House" unique_id=1027481682]
-y_sort_enabled = true
 
 [node name="BaseHouseClickableArea" parent="House/Parts" unique_id=75998111 instance=ExtResource("2_rvslj")]
 position = Vector2(713, 836)

@@ -45,6 +45,7 @@ func _ready() -> void:
 		cells[i].set_part_data(house_parts[i])
 		cells[i].grafting_succeeded.connect(_on_grafting_succeeded)
 		cells[i].grafting_failed.connect(_on_grafting_failed)
+		cells[i].z_index = 1000 - roundi(cells[i].global_position.y)
 
 	_mutation_data = DataLoader.load_mutations_from_json("res://data/mutations.json")
 	_impacts = DataLoader.load_meta_impacts_from_json("res://data/mutation_meta_impact.json")
@@ -118,8 +119,21 @@ func _on_card_dropped(mutation: MutationPartData, screen_pos: Vector2, card: Mut
 func _on_grafting_succeeded(cell: GraftCell) -> void:
 	_stage_grafted_count += 1
 	_update_hud()
-	if cell._mutation_node != null and house_tree != null:
-		cell._mutation_node.reparent(house_tree)
+	_move_mutation_to_tree(cell)
+
+func _move_mutation_to_tree(cell: GraftCell) -> void:
+	var node := cell._mutation_node
+	if node == null or house_tree == null:
+		return
+	var gpos := node.global_position
+	var grot := node.global_rotation
+	node.get_parent().remove_child(node)
+	house_tree.add_child(node)
+	node.global_position = gpos
+	node.rotation = grot
+	node.scale = Vector2(-1.0 if cell.mirrored else 1.0, 1.0)
+	node.z_as_relative = false
+	node.z_index = 1000 - roundi(gpos.y)
 	if _stage_grafted_count >= CELLS_PER_STAGE:
 		if _current_stage < TOTAL_STAGES - 1:
 			_activate_stage(_current_stage + 1)
