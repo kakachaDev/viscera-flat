@@ -32,7 +32,7 @@ expand_margin_bottom = 12.0
 
 [node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("cells", "card_tray", "hud_stage_label", "hud_grafted_label", "house_tree", "window_indicator")]
 script = ExtResource("1_rvslj")
-cells = [NodePath("House/Parts/BaseHouseClickableArea"), NodePath("House/Parts/BaseHouseClickableArea2"), NodePath("House/Parts/BaseHouseClickableArea3"), NodePath("House/Parts/BaseHouseClickableArea4"), NodePath("House/Parts/BaseHouseClickableArea5"), NodePath("House/Parts/BaseHouseClickableArea6"), NodePath("House/Parts/BaseHouseClickableArea7"), NodePath("House/Parts/BaseHouseClickableArea8")]
+cells = [NodePath("House/Домдерево/Parts/BaseHouseClickableArea"), NodePath("House/Домдерево/Parts/BaseHouseClickableArea2"), NodePath("House/Домдерево/Parts/BaseHouseClickableArea3"), NodePath("House/Домдерево/Parts/BaseHouseClickableArea4"), NodePath("House/Домдерево/Parts/BaseHouseClickableArea5"), NodePath("House/Домдерево/Parts/BaseHouseClickableArea6"), NodePath("House/Домдерево/Parts/BaseHouseClickableArea7"), NodePath("House/Домдерево/Parts/BaseHouseClickableArea8")]
 card_tray = NodePath("UI/Game/CardTray")
 hud_stage_label = NodePath("UI/Game/HUD/StageLabel")
 hud_grafted_label = NodePath("UI/Game/HUD/GraftedLabel")
@@ -72,35 +72,35 @@ position = Vector2(1, 102)
 texture = ExtResource("5_mwfav")
 offset = Vector2(0, -105.37)
 
-[node name="Parts" type="Node2D" parent="House" unique_id=1027481682]
+[node name="Parts" type="Node2D" parent="House/Домдерево" unique_id=1027481682]
 y_sort_enabled = true
 
-[node name="BaseHouseClickableArea" parent="House/Parts" unique_id=75998111 instance=ExtResource("2_rvslj")]
-position = Vector2(713, 836)
+[node name="BaseHouseClickableArea" parent="House/Домдерево/Parts" unique_id=75998111 instance=ExtResource("2_rvslj")]
+position = Vector2(-253, -228)
 
-[node name="BaseHouseClickableArea2" parent="House/Parts" unique_id=1515508204 instance=ExtResource("2_rvslj")]
-position = Vector2(1175, 842)
+[node name="BaseHouseClickableArea2" parent="House/Домдерево/Parts" unique_id=1515508204 instance=ExtResource("2_rvslj")]
+position = Vector2(209, -222)
 mirrored = true
 
-[node name="BaseHouseClickableArea3" parent="House/Parts" unique_id=1840358301 instance=ExtResource("2_rvslj")]
-position = Vector2(703, 614)
+[node name="BaseHouseClickableArea3" parent="House/Домдерево/Parts" unique_id=1840358301 instance=ExtResource("2_rvslj")]
+position = Vector2(-263, -450)
 
-[node name="BaseHouseClickableArea4" parent="House/Parts" unique_id=1526822850 instance=ExtResource("2_rvslj")]
-position = Vector2(1198, 640)
+[node name="BaseHouseClickableArea4" parent="House/Домдерево/Parts" unique_id=1526822850 instance=ExtResource("2_rvslj")]
+position = Vector2(232, -424)
 mirrored = true
 
-[node name="BaseHouseClickableArea5" parent="House/Parts" unique_id=1101391252 instance=ExtResource("2_rvslj")]
-position = Vector2(812, 483)
+[node name="BaseHouseClickableArea5" parent="House/Домдерево/Parts" unique_id=1101391252 instance=ExtResource("2_rvslj")]
+position = Vector2(-154, -581)
 
-[node name="BaseHouseClickableArea6" parent="House/Parts" unique_id=324784114 instance=ExtResource("2_rvslj")]
-position = Vector2(1092, 414)
+[node name="BaseHouseClickableArea6" parent="House/Домдерево/Parts" unique_id=324784114 instance=ExtResource("2_rvslj")]
+position = Vector2(126, -650)
 mirrored = true
 
-[node name="BaseHouseClickableArea7" parent="House/Parts" unique_id=118161282 instance=ExtResource("2_rvslj")]
-position = Vector2(598, 381)
+[node name="BaseHouseClickableArea7" parent="House/Домдерево/Parts" unique_id=118161282 instance=ExtResource("2_rvslj")]
+position = Vector2(-368, -683)
 
-[node name="BaseHouseClickableArea8" parent="House/Parts" unique_id=1300598298 instance=ExtResource("2_rvslj")]
-position = Vector2(1327, 276)
+[node name="BaseHouseClickableArea8" parent="House/Домдерево/Parts" unique_id=1300598298 instance=ExtResource("2_rvslj")]
+position = Vector2(361, -788)
 mirrored = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=457209735]
