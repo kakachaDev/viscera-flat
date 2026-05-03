@@ -98,7 +98,8 @@ func _on_card_dropped(mutation: MutationPartData, screen_pos: Vector2, card: Mut
 		var cell := cells[stage_start + i]
 		if not cell.can_accept_card():
 			continue
-		var cell_rect := Rect2(cell.global_position - Vector2(64, 64), Vector2(128, 128))
+		var cell_vp := get_viewport().get_canvas_transform() * cell.global_position
+		var cell_rect := Rect2(cell_vp - Vector2(64, 64), Vector2(128, 128))
 		if cell_rect.has_point(screen_pos):
 			cell.start_grafting(mutation)
 			card.queue_free()
