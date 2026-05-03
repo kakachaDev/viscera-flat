@@ -1,39 +1,139 @@
-[gd_scene format=3 uid="uid://cardprefab001"]
+[gd_scene format=3 uid="uid://d36qjywxcq8wh"]
 
 [ext_resource type="Script" uid="uid://b83os56etvby0" path="res://scripts/mutation_card.gd" id="1_mutcard"]
+[ext_resource type="Texture2D" uid="uid://b8cwpvyomdqlu" path="res://assets/sprites/card_base.png" id="2_l2aao"]
+[ext_resource type="Texture2D" uid="uid://cfpel4lfut6c5" path="res://assets/sprites/ветка.png" id="3_elouf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
-content_margin_left = 8.0
-content_margin_top = 6.0
-content_margin_right = 8.0
-content_margin_bottom = 6.0
-bg_color = Color(0.15, 0.12, 0.2, 0.92)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[node name="MutationCard" type="PanelContainer"]
+[node name="MutationCard" type="Control" unique_id=1639284647]
 custom_minimum_size = Vector2(155, 120)
-mouse_filter = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+layout_mode = 3
+anchors_preset = 0
+offset_right = 195.0
+offset_bottom = 257.0
 script = ExtResource("1_mutcard")
 
-[node name="VBox" type="VBoxContainer" parent="."]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Title" type="Label" parent="VBox"]
-layout_mode = 2
-mouse_filter = 2
-text = "Мутация"
-theme_override_font_sizes/font_size = 14
+[node name="Title" type="RichTextLabel" parent="." unique_id=907082497]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 2.0
+offset_right = 179.0
+offset_bottom = 49.0
+theme_override_constants/line_separation = -8
+text = "Название мутации жоское"
 autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Stats" type="RichTextLabel" parent="VBox"]
-layout_mode = 2
+[node name="VBox" type="GridContainer" parent="." unique_id=1799467325]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -60.0
+offset_right = 182.0
+offset_bottom = -11.0
+grow_vertical = 0
 mouse_filter = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 2
+columns = 3
+
+[node name="null" type="Control" parent="VBox" unique_id=395394850]
+layout_mode = 2
+
+[node name="WAIT_TITLE" type="RichTextLabel" parent="VBox" unique_id=767767440]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
+text = "Прив (3.2 с)"
 fit_content = true
-text = ""
-theme_override_font_sizes/normal_font_size = 12
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="MUT_TITLE" type="RichTextLabel" parent="VBox" unique_id=538906316]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Дох (0.3 с)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="stat_type" type="RichTextLabel" parent="VBox" unique_id=463986543]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Влажность"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="stat_wait_value" type="RichTextLabel" parent="VBox" unique_id=1136603854]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Мин. 30%"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="stat_mut_value" type="RichTextLabel" parent="VBox" unique_id=2054461130]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "+0.5%"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="stat_type2" type="RichTextLabel" parent="VBox" unique_id=937669035]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Влажность"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="stat_wait_value2" type="RichTextLabel" parent="VBox" unique_id=1935364335]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Мин. 30%"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="stat_mut_value2" type="RichTextLabel" parent="VBox" unique_id=1563202370]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "+0.5%"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1407364634]
+layout_mode = 0
+offset_right = 389.0
+offset_bottom = 513.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_l2aao")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=2002553928]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 65.0
+offset_right = 376.0
+offset_bottom = 406.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_elouf")

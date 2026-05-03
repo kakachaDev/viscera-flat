@@ -13,6 +13,9 @@ static var _cursor_owner: Node = null
 
 @export var change_stat_text_info_prefab: PackedScene
 
+@export var graft_opened: Texture2D
+@export var graft_closed: Texture2D
+
 var _part_data: HousePartData = null
 var _state: State = State.HEALED
 var _passive_timer: float = 0.0

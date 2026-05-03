@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://ccq8xs2gru538" path="res://scripts/base_stat_progress.gd" id="1_57w1s"]
 
 [sub_resource type="Gradient" id="Gradient_rvslj"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0bbpv"]
 gradient = SubResource("Gradient_rvslj")

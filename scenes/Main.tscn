@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://ujliul6f23bk"]
 
 [ext_resource type="Script" uid="uid://dg7xml8cup8t0" path="res://scripts/main.gd" id="1_rvslj"]
+[ext_resource type="Texture2D" uid="uid://com2euhx7trkg" path="res://assets/sprites/фон.png" id="2_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://bv3w0v2mhq0rw" path="res://assets/prefabs/base_house_clickable_area.tscn" id="2_rvslj"]
 [ext_resource type="PackedScene" uid="uid://3uvusa376in7" path="res://assets/prefabs/base_stat_progress.tscn" id="3_0bbpv"]
+[ext_resource type="Texture2D" uid="uid://tg38e5bhpicd" path="res://assets/sprites/домдерево.png" id="3_jlsqs"]
 [ext_resource type="Script" uid="uid://balt5inkmaub2" path="res://scripts/tooltip.gd" id="5_vcsgt"]
 [ext_resource type="Script" uid="uid://cerqws684bb2u" path="res://scripts/end_game.gd" id="6_c01mt"]
+[ext_resource type="Texture2D" uid="uid://dadiax74e4mdr" path="res://assets/sprites/progress-moisture.png" id="6_q8u5g"]
+[ext_resource type="Texture2D" uid="uid://p1s1kjgd13a6" path="res://assets/sprites/progress-moisture-fg.png" id="7_lhr70"]
+[ext_resource type="Texture2D" uid="uid://dcd6f2htae2j3" path="res://assets/sprites/progress-light.png" id="8_wp0k4"]
+[ext_resource type="Texture2D" uid="uid://c115k0lsbqrif" path="res://assets/sprites/progress-light-fg.png" id="9_bjd11"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c01mt"]
 content_margin_left = 0.0
@@ -29,18 +35,31 @@ card_tray = NodePath("UI/Game/CardTray")
 hud_stage_label = NodePath("UI/Game/HUD/StageLabel")
 hud_grafted_label = NodePath("UI/Game/HUD/GraftedLabel")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=955830104]
+position = Vector2(986, 497)
+zoom = Vector2(0.63, 0.63)
+
+[node name="Фон" type="Sprite2D" parent="." unique_id=508712712]
+position = Vector2(996, 360)
+texture = ExtResource("2_nxtc6")
+
 [node name="House" type="Node2D" parent="." unique_id=785040501]
+
+[node name="Домдерево" type="Sprite2D" parent="House" unique_id=1608915983]
+position = Vector2(966, 1064)
+texture = ExtResource("3_jlsqs")
+offset = Vector2(0, -402.336)
 
 [node name="Parts" type="Node" parent="House" unique_id=1027481682]
 
 [node name="BaseHouseClickableArea" parent="House/Parts" unique_id=75998111 instance=ExtResource("2_rvslj")]
-position = Vector2(825, 716)
+position = Vector2(784, 810)
 
 [node name="BaseHouseClickableArea2" parent="House/Parts" unique_id=1515508204 instance=ExtResource("2_rvslj")]
-position = Vector2(1095, 627)
+position = Vector2(1151, 739)
 
 [node name="BaseHouseClickableArea3" parent="House/Parts" unique_id=1840358301 instance=ExtResource("2_rvslj")]
-position = Vector2(591, 562)
+position = Vector2(639, 569)
 
 [node name="BaseHouseClickableArea4" parent="House/Parts" unique_id=1526822850 instance=ExtResource("2_rvslj")]
 position = Vector2(1276, 505)
@@ -68,32 +87,56 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Stats" type="HBoxContainer" parent="UI/Game" unique_id=2078103119]
+[node name="Stats" type="Control" parent="UI/Game" unique_id=255765576]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -208.0
-offset_top = -79.0
-offset_right = 208.0
-offset_bottom = -39.0
-grow_horizontal = 2
+offset_left = 37.0
+offset_top = -108.0
+offset_right = 689.0
+offset_bottom = -30.0
 grow_vertical = 0
-theme_override_constants/separation = 16
-alignment = 1
 
 [node name="Moisture" parent="UI/Game/Stats" unique_id=73431995 node_paths=PackedStringArray("ticker") instance=ExtResource("3_0bbpv")]
-self_modulate = Color(0, 0.8509804, 0.7764706, 1)
-layout_mode = 2
+layout_mode = 0
+offset_left = 71.0
+offset_top = 19.0
+offset_right = 265.0
+offset_bottom = 48.0
+value = 100.0
+texture_progress = ExtResource("6_q8u5g")
 stat = 1
 ticker = NodePath("../../../..")
 
-[node name="Light" parent="UI/Game/Stats" unique_id=220813740 node_paths=PackedStringArray("ticker") instance=ExtResource("3_0bbpv")]
-self_modulate = Color(0.8192126, 0.7501976, 7.70092e-07, 1)
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="UI/Game/Stats/Moisture" unique_id=1804328938]
+layout_mode = 0
+offset_left = -76.0
+offset_top = -71.0
+offset_right = 493.0
+offset_bottom = 180.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_lhr70")
+
+[node name="Moisture2" parent="UI/Game/Stats" unique_id=1650781453 node_paths=PackedStringArray("ticker") instance=ExtResource("3_0bbpv")]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 19.0
+offset_right = 581.0
+offset_bottom = 48.0
+value = 50.0
+texture_progress = ExtResource("8_wp0k4")
+texture_progress_offset = Vector2(13.81, 0)
 ticker = NodePath("../../../..")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Game/Stats/Moisture2" unique_id=968659579]
+layout_mode = 0
+offset_left = -97.0
+offset_top = -52.0
+offset_right = 505.0
+offset_bottom = 199.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_bjd11")
 
 [node name="Tooltip" type="PanelContainer" parent="UI/Game" unique_id=403723002]
 layout_mode = 0
