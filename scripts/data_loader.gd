@@ -107,15 +107,15 @@ static func load_meta_impacts_from_json(file_path: String) -> Dictionary:
 
 static func _string_to_meta_stat(stat_name: String) -> GameEnums.MetaStat:
 	match stat_name:
-		"PRODUCTIVITY":
-			return GameEnums.MetaStat.PRODUCTIVITY
-		"STABILITY":
-			return GameEnums.MetaStat.STABILITY
-		"WEIRDNESS":
-			return GameEnums.MetaStat.WEIRDNESS
+		"AESTHETICS":
+			return GameEnums.MetaStat.AESTHETICS
+		"FUNCTIONALITY":
+			return GameEnums.MetaStat.FUNCTIONALITY
+		"MONSTROUSNESS":
+			return GameEnums.MetaStat.MONSTROUSNESS
 		_:
-			push_warning("Неизвестный тип статистики: ", stat_name)
-			return GameEnums.MetaStat.PRODUCTIVITY
+			push_warning("Неизвестный тип мета-статистики: ", stat_name)
+			return GameEnums.MetaStat.AESTHETICS
 
 static func _string_to_stat_type(stat_name: String) -> GameEnums.StatType:
 	match stat_name:

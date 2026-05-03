@@ -7,69 +7,72 @@ func _init() -> void:
 	instance = self
 
 func show_end_game(impacts: Dictionary, parts: Array[MutationPartData]):
-	var meta_stats = _calculate_meta_stats(impacts, parts)
-	var description = _get_result_description(meta_stats)
-	
-	var message = """
-Результат мутаций:
+	var meta_stats := _calculate_meta_stats(impacts, parts)
+	var description := _get_result_description(meta_stats)
 
-Продуктивность: %d
-Стабильность: %d
-Странность: %d
+	var aes: int  = meta_stats[GameEnums.MetaStat.AESTHETICS]
+	var func_: int = meta_stats[GameEnums.MetaStat.FUNCTIONALITY]
+	var mon: int  = meta_stats[GameEnums.MetaStat.MONSTROUSNESS]
+
+	var message := """
+Результат мутаций дерева:
+
+Эстетика:          %d%%
+Функциональность:  %d%%
+Чудовищность:      %d%%
 
 %s
-""" % [
-	meta_stats[GameEnums.MetaStat.PRODUCTIVITY],
-	meta_stats[GameEnums.MetaStat.STABILITY],
-	meta_stats[GameEnums.MetaStat.WEIRDNESS],
-	description
-]
+""" % [aes, func_, mon, description]
+
 	$Text.text = message
-	
 	show()
 
 
-func _calculate_meta_stats(impacts: Dictionary, parts: Array[MutationPartData]) -> Dictionary[GameEnums.MetaStat, int]:
-	var totals: Dictionary[GameEnums.MetaStat, int] = {
-		GameEnums.MetaStat.PRODUCTIVITY: 0,
-		GameEnums.MetaStat.STABILITY: 0,
-		GameEnums.MetaStat.WEIRDNESS: 0
+func _calculate_meta_stats(impacts: Dictionary, parts: Array[MutationPartData]) -> Dictionary:
+	var totals := {
+		GameEnums.MetaStat.AESTHETICS:    0,
+		GameEnums.MetaStat.FUNCTIONALITY: 0,
+		GameEnums.MetaStat.MONSTROUSNESS: 0,
 	}
-	
+
 	for mutation in parts:
-		
-		var impact = impacts.get(mutation.id, {})
+		var impact: Dictionary = impacts.get(mutation.id, {})
 		for meta_stat in totals.keys():
 			totals[meta_stat] += impact.get(meta_stat, 0)
-	
-	var max_possible = 8 * 4
+
+	var max_possible := parts.size() * 4
+	if max_possible == 0:
+		max_possible = 1
 	for key in totals:
-		totals[key] = clamp((totals[key] + max_possible) * 100 / (2 * max_possible), 0, 100)
-	
+		totals[key] = clampi((totals[key] + max_possible) * 100 / (2 * max_possible), 0, 100)
+
 	return totals
 
+
 func _get_result_description(meta_stats: Dictionary) -> String:
-	var prod = meta_stats[GameEnums.MetaStat.PRODUCTIVITY]
-	var stab = meta_stats[GameEnums.MetaStat.STABILITY]
-	var weird = meta_stats[GameEnums.MetaStat.WEIRDNESS]
-	
-	if prod >= 70 and stab >= 70:
-		return "Идеальная ферма: всё растёт, всё предсказуемо, скукотища!"
-	elif prod >= 70 and weird >= 70:
-		return "Безумный урожай: растения плодоносят, но вы не знаете чем именно..."
-	elif stab >= 70 and weird >= 70:
-		return "Стабильная аномалия: предсказуемый хаос, странно но надёжно"
-	elif prod >= 70:
-		return "Промышленный комплекс: еды до фига, но работать здесь — ад"
-	elif stab >= 70:
-		return "Консерватория: ничего нового, но хотя бы не разваливается"
-	elif weird >= 70:
-		return "Паноптикум: лучше не спрашивать, что здесь происходит"
-	elif prod >= 40 and stab >= 40:
-		return "Добротная теплица: хороша, но без изюминки"
-	elif prod >= 40 and weird >= 40:
-		return "Мутагенный огород: то сгниёт, то зацветёт"
-	elif stab >= 40 and weird >= 40:
-		return "Зыбкое равновесие: держится на честном слове"
+	var aes: int   = meta_stats[GameEnums.MetaStat.AESTHETICS]
+	var func_: int = meta_stats[GameEnums.MetaStat.FUNCTIONALITY]
+	var mon: int   = meta_stats[GameEnums.MetaStat.MONSTROUSNESS]
+
+	if aes >= 70 and func_ >= 70 and mon >= 70:
+		return "Апофеоз: прекрасное, полезное и ужасающее одновременно. Это уже не дерево."
+	elif aes >= 70 and func_ >= 70:
+		return "Идеальный организм: красота и польза в гармонии."
+	elif aes >= 70 and mon >= 70:
+		return "Чудовищная красота: завораживает и пугает в равной мере."
+	elif func_ >= 70 and mon >= 70:
+		return "Эффективный монстр: уродливо, но невероятно живуч."
+	elif aes >= 70:
+		return "Скульптура из плоти: бесполезно, зато глаз не оторвать."
+	elif func_ >= 70:
+		return "Биореактор: некрасиво, зато работает на полную."
+	elif mon >= 70:
+		return "Ночной кошмар: непонятно что это, и лучше не знать."
+	elif aes >= 45 and func_ >= 45:
+		return "Жизнеспособный гибрид: ничего выдающегося, но держится."
+	elif aes >= 45 and mon >= 45:
+		return "Странная красота: немного жутковато, но по-своему мило."
+	elif func_ >= 45 and mon >= 45:
+		return "Зловещий механизм: пугает, но свою работу делает."
 	else:
-		return "Руины: лучше снести и построить заново"
+		return "Недоразумение: дерево смотрит на вас с немым укором."

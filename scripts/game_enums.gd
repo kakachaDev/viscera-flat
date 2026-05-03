@@ -17,13 +17,13 @@ static var StatName : Dictionary[StatType, String] = {
 }
 
 enum MetaStat {
-	PRODUCTIVITY,   # Продуктивность (урожайность, эффективность)
-	STABILITY,      # Стабильность (надёжность, предсказуемость)
-	WEIRDNESS       # Странность (мутагенность, непредсказуемость)
+	AESTHETICS,      # Эстетика (симметрия, редкость органов)
+	FUNCTIONALITY,   # Функциональность (пассивный доход ресурсов)
+	MONSTROUSNESS    # Чудовищность (шипы, глаза, страх)
 }
 
 static var MetaStatName = {
-	MetaStat.PRODUCTIVITY: "Продуктивность",
-	MetaStat.STABILITY: "Стабильность",
-	MetaStat.WEIRDNESS: "Странность"
+	MetaStat.AESTHETICS:    "Эстетика",
+	MetaStat.FUNCTIONALITY: "Функциональность",
+	MetaStat.MONSTROUSNESS: "Чудовищность"
 }

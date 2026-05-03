@@ -1,66 +1,66 @@
 [
-    {
-        "mutation_id": "mut_light_positive",
-        "impacts": {
-            "PRODUCTIVITY": 2,
-            "STABILITY": -1,
-            "WEIRDNESS": 1
-        }
-    },
-    {
-        "mutation_id": "mut_light_negative",
-        "impacts": {
-            "PRODUCTIVITY": -1,
-            "STABILITY": -2,
-            "WEIRDNESS": 2
-        }
-    },
-    {
-        "mutation_id": "mut_food_positive",
-        "impacts": {
-            "PRODUCTIVITY": 3,
-            "STABILITY": 1,
-            "WEIRDNESS": 0
-        }
-    },
-    {
-        "mutation_id": "mut_food_negative",
-        "impacts": {
-            "PRODUCTIVITY": -2,
-            "STABILITY": -1,
-            "WEIRDNESS": 1
-        }
-    },
-    {
-        "mutation_id": "mut_moisture_positive",
-        "impacts": {
-            "PRODUCTIVITY": 1,
-            "STABILITY": 2,
-            "WEIRDNESS": -1
-        }
-    },
-    {
-        "mutation_id": "mut_moisture_negative",
-        "impacts": {
-            "PRODUCTIVITY": -1,
-            "STABILITY": -2,
-            "WEIRDNESS": 1
-        }
-    },
-    {
-        "mutation_id": "mut_light_food_positive",
-        "impacts": {
-            "PRODUCTIVITY": 3,
-            "STABILITY": -2,
-            "WEIRDNESS": 3
-        }
-    },
-    {
-        "mutation_id": "mut_food_moisture_negative",
-        "impacts": {
-            "PRODUCTIVITY": -3,
-            "STABILITY": -2,
-            "WEIRDNESS": 4
-        }
-    }
+	{
+		"mutation_id": "mut_vine",
+		"impacts": {
+			"AESTHETICS": 1,
+			"FUNCTIONALITY": 2,
+			"MONSTROUSNESS": 1
+		}
+	},
+	{
+		"mutation_id": "mut_branch",
+		"impacts": {
+			"AESTHETICS": 2,
+			"FUNCTIONALITY": 1,
+			"MONSTROUSNESS": 0
+		}
+	},
+	{
+		"mutation_id": "mut_mushroom",
+		"impacts": {
+			"AESTHETICS": -1,
+			"FUNCTIONALITY": 4,
+			"MONSTROUSNESS": 2
+		}
+	},
+	{
+		"mutation_id": "mut_tuber",
+		"impacts": {
+			"AESTHETICS": 0,
+			"FUNCTIONALITY": 3,
+			"MONSTROUSNESS": 1
+		}
+	},
+	{
+		"mutation_id": "mut_thorns",
+		"impacts": {
+			"AESTHETICS": -2,
+			"FUNCTIONALITY": 1,
+			"MONSTROUSNESS": 4
+		}
+	},
+	{
+		"mutation_id": "mut_wings",
+		"impacts": {
+			"AESTHETICS": 4,
+			"FUNCTIONALITY": 1,
+			"MONSTROUSNESS": 2
+		}
+	},
+	{
+		"mutation_id": "mut_photo_leaf",
+		"impacts": {
+			"AESTHETICS": 3,
+			"FUNCTIONALITY": 4,
+			"MONSTROUSNESS": -1
+		}
+	},
+	{
+		"mutation_id": "mut_conifer_scale",
+		"impacts": {
+			"AESTHETICS": 3,
+			"FUNCTIONALITY": 2,
+			"MONSTROUSNESS": 0
+		}
+	}
 ]

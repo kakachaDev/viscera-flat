@@ -1,66 +1,66 @@
 [
 	{
-		"id": "mut_high_light",
-		"description": "Световая мутация",
-		"conditions": { "Light_min": 65 },
+		"id": "mut_vine",
+		"description": "Лоза",
+		"conditions": { "Moisture_min": 60 },
 		"update_time": 3.0,
-		"graft_time": 8.0,
-		"stat_change": { "Light": -1.5, "Moisture": 0.8 }
+		"graft_time": 7.0,
+		"stat_change": { "Moisture": -1.5, "Light": 0.8 }
 	},
 	{
-		"id": "mut_low_light",
-		"description": "Темновая мутация",
-		"conditions": { "Light_max": 35 },
-		"update_time": 3.5,
-		"graft_time": 10.0,
-		"stat_change": { "Light": 1.2, "Moisture": -0.5 }
-	},
-	{
-		"id": "mut_wet",
-		"description": "Влажная активность",
-		"conditions": { "Moisture_min": 75 },
-		"update_time": 2.8,
-		"graft_time": 6.0,
-		"stat_change": { "Moisture": -2.0, "Light": 1.0 }
-	},
-	{
-		"id": "mut_bright_dry",
-		"description": "Засветление",
-		"conditions": { "Light_min": 70, "Moisture_max": 30 },
-		"update_time": 3.2,
-		"graft_time": 12.0,
-		"stat_change": { "Light": -1.5, "Moisture": 1.5 }
-	},
-	{
-		"id": "mut_high_moisture",
-		"description": "Влажная мутация",
-		"conditions": { "Moisture_min": 65 },
-		"update_time": 2.5,
-		"graft_time": 8.0,
-		"stat_change": { "Moisture": -1.8, "Light": 0.8 }
-	},
-	{
-		"id": "mut_low_moisture",
-		"description": "Сухая мутация",
-		"conditions": { "Moisture_max": 35 },
-		"update_time": 3.0,
-		"graft_time": 10.0,
-		"stat_change": { "Moisture": 2.0 }
-	},
-	{
-		"id": "mut_photosynthesis",
-		"description": "Фотосинтез",
-		"conditions": { "Light_min": 60, "Moisture_min": 60 },
-		"update_time": 2.2,
-		"graft_time": 15.0,
-		"stat_change": { "Light": -1.0, "Moisture": -0.5 }
-	},
-	{
-		"id": "mut_rot",
-		"description": "Гниль",
-		"conditions": { "Moisture_max": 30, "Light_min": 70 },
+		"id": "mut_branch",
+		"description": "Ветка",
+		"conditions": { "Light_min": 50 },
 		"update_time": 4.0,
+		"graft_time": 6.0,
+		"stat_change": { "Light": -1.0, "Moisture": 0.5 }
+	},
+	{
+		"id": "mut_mushroom",
+		"description": "Гриб",
+		"conditions": { "Moisture_min": 70, "Light_max": 40 },
+		"update_time": 2.5,
+		"graft_time": 10.0,
+		"stat_change": { "Moisture": -2.5, "Light": 1.5 }
+	},
+	{
+		"id": "mut_tuber",
+		"description": "Клубень",
+		"conditions": { "Moisture_min": 40 },
+		"update_time": 5.0,
+		"graft_time": 5.0,
+		"stat_change": { "Moisture": -1.0 }
+	},
+	{
+		"id": "mut_thorns",
+		"description": "Колючки",
+		"conditions": { "Light_min": 60, "Moisture_max": 50 },
+		"update_time": 3.5,
+		"graft_time": 9.0,
+		"stat_change": { "Light": -2.0, "Moisture": 1.5 }
+	},
+	{
+		"id": "mut_wings",
+		"description": "Крылышки",
+		"conditions": { "Light_min": 55 },
+		"update_time": 2.0,
+		"graft_time": 14.0,
+		"stat_change": { "Light": -2.0, "Moisture": 0.5 }
+	},
+	{
+		"id": "mut_photo_leaf",
+		"description": "Фотосинтезирующий лист",
+		"conditions": { "Light_min": 65, "Moisture_min": 50 },
+		"update_time": 2.5,
 		"graft_time": 12.0,
-		"stat_change": { "Moisture": -1.2, "Light": -0.6 }
+		"stat_change": { "Light": -2.0, "Moisture": -1.0 }
+	},
+	{
+		"id": "mut_conifer_scale",
+		"description": "Хвойная чешуя",
+		"conditions": { "Moisture_max": 45 },
+		"update_time": 3.5,
+		"graft_time": 8.0,
+		"stat_change": { "Light": 0.5, "Moisture": -0.8 }
 	}
 ]
