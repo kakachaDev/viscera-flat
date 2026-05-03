@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://36rx60j60ojo" path="res://assets/sprites/window.png" id="4_awckm"]
 [ext_resource type="Texture2D" uid="uid://bjsb1kdkrq17g" path="res://assets/sprites/window_indicator.png" id="5_7ahh7"]
 [ext_resource type="Texture2D" uid="uid://bd00nnwvrl1aa" path="res://assets/sprites/seed.png" id="6_yague"]
+[ext_resource type="Script" uid="uid://btvk3e7h2j5mp" path="res://scripts/start_scene.gd" id="7_start"]
 
 [sub_resource type="Animation" id="Animation_cov1b"]
 length = 0.001
@@ -304,6 +305,7 @@ _data = {
 }
 
 [node name="Start" type="Node" unique_id=1476694498]
+script = ExtResource("7_start")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1471064502]
 position = Vector2(28, 614)

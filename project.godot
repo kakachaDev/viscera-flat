@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Viscera Flat"
-run/main_scene="uid://ujliul6f23bk"
+run/main_scene="uid://cwaddo2v7134g"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
