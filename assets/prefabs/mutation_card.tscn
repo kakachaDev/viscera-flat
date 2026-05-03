@@ -18,7 +18,7 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 193.0
 offset_bottom = 255.0
-color = Color(0, 0, 0, 1)
+color = Color(0.5671913, 0.6703418, 0.30672526, 1)
 
 [node name="background" type="TextureRect" parent="." unique_id=1407364634]
 layout_mode = 0
@@ -34,7 +34,9 @@ offset_top = 2.0
 offset_right = 179.0
 offset_bottom = 49.0
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6509804)
 theme_override_constants/line_separation = -8
+theme_override_constants/outline_size = 4
 text = "Название мутации жоское"
 autowrap_mode = 2
 horizontal_alignment = 1
@@ -61,6 +63,8 @@ mouse_filter = 1
 [node name="WAIT_TITLE" type="RichTextLabel" parent="VBox" unique_id=767767440]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.46666667)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "Прив (3.2 с)"
@@ -72,6 +76,8 @@ shortcut_keys_enabled = false
 [node name="MUT_TITLE" type="RichTextLabel" parent="VBox" unique_id=538906316]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.46666667)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "Дох (0.3 с)"
@@ -83,6 +89,8 @@ shortcut_keys_enabled = false
 [node name="stat_type" type="RichTextLabel" parent="VBox" unique_id=463986543]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.46666667)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "Влажность"
@@ -94,6 +102,8 @@ shortcut_keys_enabled = false
 [node name="stat_wait_value" type="RichTextLabel" parent="VBox" unique_id=1136603854]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.46666667)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "Мин. 30%"
@@ -105,6 +115,8 @@ shortcut_keys_enabled = false
 [node name="stat_mut_value" type="RichTextLabel" parent="VBox" unique_id=2054461130]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.46666667)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "+0.5%"
@@ -116,6 +128,8 @@ shortcut_keys_enabled = false
 [node name="stat_type2" type="RichTextLabel" parent="VBox" unique_id=937669035]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.46666667)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "Влажность"
@@ -127,6 +141,8 @@ shortcut_keys_enabled = false
 [node name="stat_wait_value2" type="RichTextLabel" parent="VBox" unique_id=1935364335]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.46666667)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "Мин. 30%"
@@ -138,6 +154,8 @@ shortcut_keys_enabled = false
 [node name="stat_mut_value2" type="RichTextLabel" parent="VBox" unique_id=1563202370]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.46666667)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "+0.5%"

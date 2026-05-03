@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bv3w0v2mhq0rw" path="res://assets/prefabs/base_house_clickable_area.tscn" id="2_rvslj"]
 [ext_resource type="PackedScene" uid="uid://3uvusa376in7" path="res://assets/prefabs/base_stat_progress.tscn" id="3_0bbpv"]
 [ext_resource type="Texture2D" uid="uid://tg38e5bhpicd" path="res://assets/sprites/house_tree.png" id="3_jlsqs"]
+[ext_resource type="Texture2D" uid="uid://36rx60j60ojo" path="res://assets/sprites/window.png" id="4_qmy6f"]
+[ext_resource type="Texture2D" uid="uid://bjsb1kdkrq17g" path="res://assets/sprites/window_indicator.png" id="5_mwfav"]
 [ext_resource type="Script" uid="uid://balt5inkmaub2" path="res://scripts/tooltip.gd" id="5_vcsgt"]
 [ext_resource type="Script" uid="uid://cerqws684bb2u" path="res://scripts/end_game.gd" id="6_c01mt"]
 [ext_resource type="Texture2D" uid="uid://dadiax74e4mdr" path="res://assets/sprites/progress-moisture.png" id="6_q8u5g"]
@@ -50,35 +52,53 @@ position = Vector2(966, 1064)
 texture = ExtResource("3_jlsqs")
 offset = Vector2(0, -402.336)
 
+[node name="Window" type="Sprite2D" parent="House/Домдерево" unique_id=660361643]
+z_index = 1
+position = Vector2(-24, -239)
+texture = ExtResource("4_qmy6f")
+
+[node name="WindowIndicatorBG" type="Sprite2D" parent="House/Домдерево/Window" unique_id=1525019773]
+self_modulate = Color(0.3164057, 0.3060401, 0.2200594, 1)
+z_index = -1
+position = Vector2(1, 102)
+texture = ExtResource("5_mwfav")
+offset = Vector2(0, -105.37)
+
+[node name="WindowIndicator" type="Sprite2D" parent="House/Домдерево/Window" unique_id=1812166155]
+z_index = -1
+position = Vector2(1, 102)
+texture = ExtResource("5_mwfav")
+offset = Vector2(0, -105.37)
+
 [node name="Parts" type="Node2D" parent="House" unique_id=1027481682]
 y_sort_enabled = true
 
 [node name="BaseHouseClickableArea" parent="House/Parts" unique_id=75998111 instance=ExtResource("2_rvslj")]
-position = Vector2(784, 810)
+position = Vector2(713, 836)
 
 [node name="BaseHouseClickableArea2" parent="House/Parts" unique_id=1515508204 instance=ExtResource("2_rvslj")]
-position = Vector2(1151, 739)
+position = Vector2(1175, 842)
 mirrored = true
 
 [node name="BaseHouseClickableArea3" parent="House/Parts" unique_id=1840358301 instance=ExtResource("2_rvslj")]
-position = Vector2(639, 569)
+position = Vector2(703, 614)
 
 [node name="BaseHouseClickableArea4" parent="House/Parts" unique_id=1526822850 instance=ExtResource("2_rvslj")]
-position = Vector2(1276, 505)
+position = Vector2(1198, 640)
 mirrored = true
 
 [node name="BaseHouseClickableArea5" parent="House/Parts" unique_id=1101391252 instance=ExtResource("2_rvslj")]
-position = Vector2(783, 395)
+position = Vector2(812, 483)
 
 [node name="BaseHouseClickableArea6" parent="House/Parts" unique_id=324784114 instance=ExtResource("2_rvslj")]
-position = Vector2(1039, 444)
+position = Vector2(1092, 414)
 mirrored = true
 
 [node name="BaseHouseClickableArea7" parent="House/Parts" unique_id=118161282 instance=ExtResource("2_rvslj")]
-position = Vector2(603, 272)
+position = Vector2(598, 381)
 
 [node name="BaseHouseClickableArea8" parent="House/Parts" unique_id=1300598298 instance=ExtResource("2_rvslj")]
-position = Vector2(1182, 241)
+position = Vector2(1327, 276)
 mirrored = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=457209735]
