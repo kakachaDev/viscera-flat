@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://t51wegb54oj6"]
+
+[ext_resource type="Texture2D" uid="uid://cfpel4lfut6c5" path="res://assets/sprites/ветка.png" id="1_6s1pl"]
+
+[node name="mut_branch" type="Sprite2D" unique_id=234801692]
+texture = ExtResource("1_6s1pl")
+offset = Vector2(125.765, -85.35)
