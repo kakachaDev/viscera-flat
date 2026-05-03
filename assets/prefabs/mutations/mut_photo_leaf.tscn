@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://g9crpcrvuw7w6"]
+
+[ext_resource type="Texture2D" uid="uid://dl2cm2vys2v67" path="res://assets/sprites/mutations/photo_leaf.png" id="1_photo_leaf"]
+
+[node name="mut_photo_leaf" type="Sprite2D" unique_id=100000006]
+texture = ExtResource("1_photo_leaf")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b4xmk7pqn2r1"]
+
+[ext_resource type="Texture2D" uid="uid://mvjm7ibxwnm2" path="res://assets/sprites/mutations/vine.png" id="1_vine"]
+
+[node name="mut_vine" type="Sprite2D" unique_id=100000001]
+texture = ExtResource("1_vine")

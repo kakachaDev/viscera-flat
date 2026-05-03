@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tg38e5bhpicd"
-path="res://.godot/imported/домдерево.png-a4bc39c92d014aacaa5b8ae1afdbf48b.ctex"
+uid="uid://c4golardic2av"
+path="res://.godot/imported/клубень.png-fec9263714f0078ce15de840708dc12a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/домдерево.png"
-dest_files=["res://.godot/imported/домдерево.png-a4bc39c92d014aacaa5b8ae1afdbf48b.ctex"]
+source_file="res://assets/sprites/mutations/tuber.png"
+dest_files=["res://.godot/imported/клубень.png-fec9263714f0078ce15de840708dc12a.ctex"]
 
 [params]
 

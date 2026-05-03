@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd00nnwvrl1aa"
-path="res://.godot/imported/семечка.png-4323b2ecbc3707b97b7c42fb8a61a67a.ctex"
+uid="uid://bjsb1kdkrq17g"
+path="res://.godot/imported/индикатор окна.png-de3580d8c74b3fe73d39415b1ef14310.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/семечка.png"
-dest_files=["res://.godot/imported/семечка.png-4323b2ecbc3707b97b7c42fb8a61a67a.ctex"]
+source_file="res://assets/sprites/window_indicator.png"
+dest_files=["res://.godot/imported/индикатор окна.png-de3580d8c74b3fe73d39415b1ef14310.ctex"]
 
 [params]
 

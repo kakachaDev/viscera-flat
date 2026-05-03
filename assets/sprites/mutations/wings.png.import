@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciw2tln75ii8m"
-path="res://.godot/imported/семечка закрыта.png-59609879d7e1740ce334e6f20d3975e0.ctex"
+uid="uid://dr8dlpg7q0hob"
+path="res://.godot/imported/крылышки.png-710341ac8c1836c116d38199b7a9e0ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/семечка закрыта.png"
-dest_files=["res://.godot/imported/семечка закрыта.png-59609879d7e1740ce334e6f20d3975e0.ctex"]
+source_file="res://assets/sprites/mutations/wings.png"
+dest_files=["res://.godot/imported/крылышки.png-710341ac8c1836c116d38199b7a9e0ad.ctex"]
 
 [params]
 

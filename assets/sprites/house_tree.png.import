@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfpel4lfut6c5"
-path="res://.godot/imported/ветка.png-d60031e7ce3bf9c11e254fd2f66dc09c.ctex"
+uid="uid://tg38e5bhpicd"
+path="res://.godot/imported/домдерево.png-a4bc39c92d014aacaa5b8ae1afdbf48b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ветка.png"
-dest_files=["res://.godot/imported/ветка.png-d60031e7ce3bf9c11e254fd2f66dc09c.ctex"]
+source_file="res://assets/sprites/house_tree.png"
+dest_files=["res://.godot/imported/домдерево.png-a4bc39c92d014aacaa5b8ae1afdbf48b.ctex"]
 
 [params]
 

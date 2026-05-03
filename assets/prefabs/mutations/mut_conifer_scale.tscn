@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://h0dsqdswvx8x7"]
+
+[ext_resource type="Texture2D" uid="uid://ceytyk8id2mf4" path="res://assets/sprites/mutations/conifer_scale.png" id="1_conifer_scale"]
+
+[node name="mut_conifer_scale" type="Sprite2D" unique_id=100000007]
+texture = ExtResource("1_conifer_scale")

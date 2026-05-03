@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8iul8qljxi02"
-path="res://.godot/imported/гриб.png-f83d7350054fc28358c67acbe0d30eda.ctex"
+uid="uid://ciw2tln75ii8m"
+path="res://.godot/imported/семечка закрыта.png-59609879d7e1740ce334e6f20d3975e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/гриб.png"
-dest_files=["res://.godot/imported/гриб.png-f83d7350054fc28358c67acbe0d30eda.ctex"]
+source_file="res://assets/sprites/seed_closed.png"
+dest_files=["res://.godot/imported/семечка закрыта.png-59609879d7e1740ce334e6f20d3975e0.ctex"]
 
 [params]
 

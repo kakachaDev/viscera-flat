@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 class_name MutationCard
 
 signal card_dropped(mutation: MutationPartData, screen_pos: Vector2)
@@ -9,8 +9,16 @@ var _drag_offset := Vector2.ZERO
 var _home_position := Vector2.ZERO
 var _hover_tween: Tween = null
 
-@onready var _title_label: Label = $VBox/Title
-@onready var _stats_label: RichTextLabel = $VBox/Stats
+@onready var _title_label: RichTextLabel = $Title
+@onready var _mutation_image: TextureRect = $mutation_image
+@onready var _wait_title: RichTextLabel = $VBox/WAIT_TITLE
+@onready var _mut_title: RichTextLabel  = $VBox/MUT_TITLE
+@onready var _stat_type:  RichTextLabel = $VBox/stat_type
+@onready var _stat_wait:  RichTextLabel = $VBox/stat_wait_value
+@onready var _stat_mut:   RichTextLabel = $VBox/stat_mut_value
+@onready var _stat_type2: RichTextLabel = $VBox/stat_type2
+@onready var _stat_wait2: RichTextLabel = $VBox/stat_wait_value2
+@onready var _stat_mut2:  RichTextLabel = $VBox/stat_mut_value2
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -24,11 +32,9 @@ func setup(mutation: MutationPartData) -> void:
 func get_mutation() -> MutationPartData:
 	return _mutation
 
-# Call after positioning the card in the tray so hover and snap_back know where home is.
 func set_home(pos: Vector2) -> void:
 	_home_position = pos
 
-# Slide in from below the tray with optional delay for staggering.
 func animate_in(target_pos: Vector2, delay: float = 0.0) -> void:
 	_home_position = target_pos
 	position = Vector2(target_pos.x, 200.0)
@@ -49,27 +55,68 @@ func snap_back() -> void:
 func _update_display() -> void:
 	_title_label.text = _mutation.description
 
-	var lines: Array[String] = []
+	_wait_title.text = "Прив. (%.0fс)" % _mutation.graft_time
+	_mut_title.text  = "Эфф. (%.1fс)" % _mutation.update_time
+
+	# Set mutation image from prefab sprite
+	var prefab_path := "res://assets/prefabs/mutations/" + _mutation.id + ".tscn"
+	if ResourceLoader.exists(prefab_path):
+		var packed := load(prefab_path) as PackedScene
+		var node := packed.instantiate()
+		if node is Sprite2D:
+			_mutation_image.texture = (node as Sprite2D).texture
+		node.queue_free()
+
+	# Populate stat rows: row 1 = Light, row 2 = Moisture
+	_fill_stat_row(
+		_stat_type, _stat_wait, _stat_mut,
+		GameEnums.StatType.Light, "Свет", Color.GOLD
+	)
+	_fill_stat_row(
+		_stat_type2, _stat_wait2, _stat_mut2,
+		GameEnums.StatType.Moisture, "Влажн.", Color.DEEP_SKY_BLUE
+	)
+
+func _fill_stat_row(
+	lbl_type: RichTextLabel,
+	lbl_wait: RichTextLabel,
+	lbl_mut: RichTextLabel,
+	stat: GameEnums.StatType,
+	stat_name: String,
+	stat_color: Color
+) -> void:
+	var color_hex := stat_color.to_html()
+	var has_anything := false
+
+	# Condition
+	var cond_text := ""
 	for key in _mutation.conditions.keys():
 		var sep := (key as String).rfind("_")
-		var stat_name := (key as String).substr(0, sep)
-		var cond_type := (key as String).substr(sep + 1)
-		var val: float = _mutation.conditions[key]
-		var label := "мин" if cond_type == "min" else "макс"
-		var color := Color.GOLD.to_html() if stat_name == "Light" else Color.DEEP_SKY_BLUE.to_html()
-		var display_name := "Свет" if stat_name == "Light" else "Влажн."
-		lines.append("[color=%s]%s %s: %.0f%%[/color]" % [color, display_name, label, val])
+		var key_stat := (key as String).substr(0, sep)
+		var key_cond := (key as String).substr(sep + 1)
+		if DataLoader._string_to_stat_type(key_stat) == stat:
+			var val: float = _mutation.conditions[key]
+			var label := "мин" if key_cond == "min" else "макс"
+			cond_text = "%s %.0f%%" % [label, val]
+			has_anything = true
+			break
+	lbl_wait.text = cond_text
 
-	lines.append("Приживл.: %.0fс" % _mutation.graft_time)
-
-	for stat_key in _mutation.stat_change.keys():
-		var color := (GameEnums.StatColor.get(stat_key, Color.WHITE) as Color).to_html()
-		var name := GameEnums.StatName.get(stat_key, "?") as String
-		var v := _mutation.stat_change[stat_key]
+	# Effect
+	var effect_text := ""
+	if _mutation.stat_change.has(stat):
+		var v := _mutation.stat_change[stat]
 		var sign := "+" if v > 0 else ""
-		lines.append("[color=%s]%s %s%.1f%%[/color]" % [color, name, sign, v])
+		var eff_color := Color.GREEN if v > 0 else Color.TOMATO
+		effect_text = "[color=%s]%s%.1f%%[/color]" % [eff_color.to_html(), sign, v]
+		has_anything = true
+	lbl_mut.text = effect_text
 
-	_stats_label.text = "\n".join(lines)
+	# Stat type label (only show if row has content)
+	if has_anything:
+		lbl_type.text = "[color=%s]%s[/color]" % [color_hex, stat_name]
+	else:
+		lbl_type.text = ""
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -83,7 +130,7 @@ func _gui_input(event: InputEvent) -> void:
 func _start_drag() -> void:
 	_dragging = true
 	_kill_hover_tween()
-	position = _home_position  # snap out of hover offset before dragging
+	position = _home_position
 	_drag_offset = get_global_mouse_position() - global_position
 	z_index = 100
 

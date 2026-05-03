@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://ujliul6f23bk"]
 
 [ext_resource type="Script" uid="uid://dg7xml8cup8t0" path="res://scripts/main.gd" id="1_rvslj"]
-[ext_resource type="Texture2D" uid="uid://com2euhx7trkg" path="res://assets/sprites/фон.png" id="2_nxtc6"]
+[ext_resource type="Texture2D" uid="uid://com2euhx7trkg" path="res://assets/sprites/background.png" id="2_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://bv3w0v2mhq0rw" path="res://assets/prefabs/base_house_clickable_area.tscn" id="2_rvslj"]
 [ext_resource type="PackedScene" uid="uid://3uvusa376in7" path="res://assets/prefabs/base_stat_progress.tscn" id="3_0bbpv"]
-[ext_resource type="Texture2D" uid="uid://tg38e5bhpicd" path="res://assets/sprites/домдерево.png" id="3_jlsqs"]
+[ext_resource type="Texture2D" uid="uid://tg38e5bhpicd" path="res://assets/sprites/house_tree.png" id="3_jlsqs"]
 [ext_resource type="Script" uid="uid://balt5inkmaub2" path="res://scripts/tooltip.gd" id="5_vcsgt"]
 [ext_resource type="Script" uid="uid://cerqws684bb2u" path="res://scripts/end_game.gd" id="6_c01mt"]
 [ext_resource type="Texture2D" uid="uid://dadiax74e4mdr" path="res://assets/sprites/progress-moisture.png" id="6_q8u5g"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://com2euhx7trkg"
-path="res://.godot/imported/фон.png-663c6c9807b636298fc04a6fc04db91a.ctex"
+uid="uid://bhgnuv6jfffsc"
+path="res://.godot/imported/колючки.png-2443df013c0eee7bd6500c59f4259cf2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/фон.png"
-dest_files=["res://.godot/imported/фон.png-663c6c9807b636298fc04a6fc04db91a.ctex"]
+source_file="res://assets/sprites/mutations/thorns.png"
+dest_files=["res://.godot/imported/колючки.png-2443df013c0eee7bd6500c59f4259cf2.ctex"]
 
 [params]
 

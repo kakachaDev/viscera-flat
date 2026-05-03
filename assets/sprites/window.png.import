@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/окно.png"
+source_file="res://assets/sprites/window.png"
 dest_files=["res://.godot/imported/окно.png-8383a2204cf480df20c2abe75d849162.ctex"]
 
 [params]

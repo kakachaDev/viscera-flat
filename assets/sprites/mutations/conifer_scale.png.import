@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4golardic2av"
-path="res://.godot/imported/клубень.png-fec9263714f0078ce15de840708dc12a.ctex"
+uid="uid://ceytyk8id2mf4"
+path="res://.godot/imported/хвоя.png-4a21f6556c8a6b36d913f5141deee70b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/клубень.png"
-dest_files=["res://.godot/imported/клубень.png-fec9263714f0078ce15de840708dc12a.ctex"]
+source_file="res://assets/sprites/mutations/conifer_scale.png"
+dest_files=["res://.godot/imported/хвоя.png-4a21f6556c8a6b36d913f5141deee70b.ctex"]
 
 [params]
 

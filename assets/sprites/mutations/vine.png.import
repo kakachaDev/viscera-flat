@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgmo3li88ly1j"
-path="res://.godot/imported/цветок.png-b0a1be45c68adcec9155836a5cfc5271.ctex"
+uid="uid://mvjm7ibxwnm2"
+path="res://.godot/imported/Лоза.png-46f08cf388866d627cf30c79d04ff3d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/цветок.png"
-dest_files=["res://.godot/imported/цветок.png-b0a1be45c68adcec9155836a5cfc5271.ctex"]
+source_file="res://assets/sprites/mutations/vine.png"
+dest_files=["res://.godot/imported/Лоза.png-46f08cf388866d627cf30c79d04ff3d9.ctex"]
 
 [params]
 

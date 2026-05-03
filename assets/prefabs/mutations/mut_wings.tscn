@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://f8bqobqtuv6v5"]
+
+[ext_resource type="Texture2D" uid="uid://dr8dlpg7q0hob" path="res://assets/sprites/mutations/wings.png" id="1_wings"]
+
+[node name="mut_wings" type="Sprite2D" unique_id=100000005]
+texture = ExtResource("1_wings")

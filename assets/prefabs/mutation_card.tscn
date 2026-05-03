@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b83os56etvby0" path="res://scripts/mutation_card.gd" id="1_mutcard"]
 [ext_resource type="Texture2D" uid="uid://b8cwpvyomdqlu" path="res://assets/sprites/card_base.png" id="2_l2aao"]
-[ext_resource type="Texture2D" uid="uid://mvjm7ibxwnm2" path="res://assets/sprites/Лоза.png" id="3_elouf"]
+[ext_resource type="Texture2D" uid="uid://mvjm7ibxwnm2" path="res://assets/sprites/mutations/vine.png" id="3_elouf"]
 
 [node name="MutationCard" type="Control" unique_id=1639284647]
 custom_minimum_size = Vector2(155, 120)

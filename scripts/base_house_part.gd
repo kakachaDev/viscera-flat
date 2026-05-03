@@ -15,6 +15,7 @@ static var _cursor_owner: Node = null
 
 @export var graft_opened: Texture2D
 @export var graft_closed: Texture2D
+@export var mirrored: bool = false
 
 var _part_data: HousePartData = null
 var _state: State = State.HEALED
@@ -27,6 +28,7 @@ var _is_holding := false
 var _hold_timer := 0.0
 var _hold_indicator: HoldProgressIndicator
 var _graft_indicator: HoldProgressIndicator
+var _mutation_node: Node = null
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -38,6 +40,8 @@ func _ready() -> void:
 	add_child(_hold_indicator)
 
 	_graft_indicator = HoldProgressIndicator.new()
+	_graft_indicator.radius = 22.0
+	_graft_indicator.width = 4.0
 	_graft_indicator.hide()
 	add_child(_graft_indicator)
 
@@ -65,6 +69,7 @@ func start_grafting(mutation: MutationPartData) -> void:
 	_graft_timer = 0.0
 	_graft_indicator.progress = 0.0
 	_graft_indicator.show()
+	_spawn_mutation_prefab()
 	_update_visuals()
 	if GraftCell._cursor_owner == self:
 		_update_tooltip()
@@ -152,6 +157,18 @@ func _succeed_graft() -> void:
 		_update_tooltip()
 	grafting_succeeded.emit(self)
 
+func _spawn_mutation_prefab() -> void:
+	if _grafted_mutation == null:
+		return
+	var prefab_path := "res://assets/prefabs/mutations/" + _grafted_mutation.id + ".tscn"
+	if not ResourceLoader.exists(prefab_path):
+		return
+	var packed := load(prefab_path) as PackedScene
+	_mutation_node = packed.instantiate()
+	if mirrored:
+		_mutation_node.scale.x = -1.0
+	add_child(_mutation_node)
+
 func _fail_graft() -> void:
 	var mutation := _grafted_mutation
 	_state = State.CUT
@@ -159,6 +176,9 @@ func _fail_graft() -> void:
 	_graft_timer = 0.0
 	_graft_indicator.hide()
 	_graft_indicator.progress = 0.0
+	if _mutation_node != null:
+		_mutation_node.queue_free()
+		_mutation_node = null
 	_update_visuals()
 	_show_fail_floater()
 	if GraftCell._cursor_owner == self:
@@ -179,16 +199,19 @@ func _show_fail_floater() -> void:
 func _update_visuals() -> void:
 	if not has_node("Body"):
 		return
-	var sprite := $Body as Node2D
+	var sprite := $Body as Sprite2D
 	match _state:
 		State.HEALED:
-			sprite.modulate = Color(0.5, 1.0, 0.5)
+			sprite.show()
+			sprite.texture = graft_closed
 		State.CUT:
-			sprite.modulate = Color(1.0, 0.45, 0.35)
+			sprite.show()
+			sprite.texture = graft_opened
 		State.GRAFTING:
-			sprite.modulate = Color(1.0, 0.85, 0.2)
+			sprite.show()
+			sprite.texture = graft_opened
 		State.GRAFTED:
-			sprite.modulate = Color(0.65, 0.35, 1.0)
+			sprite.hide()
 
 # ---- Input / Hold mechanic ----
 

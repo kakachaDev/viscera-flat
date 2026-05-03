@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://e7apnapstu5u4"]
+
+[ext_resource type="Texture2D" uid="uid://bhgnuv6jfffsc" path="res://assets/sprites/mutations/thorns.png" id="1_thorns"]
+
+[node name="mut_thorns" type="Sprite2D" unique_id=100000004]
+texture = ExtResource("1_thorns")
