@@ -117,6 +117,8 @@ func _on_card_dropped(mutation: MutationPartData, screen_pos: Vector2, card: Mut
 func _on_grafting_succeeded(cell: GraftCell) -> void:
 	_stage_grafted_count += 1
 	_update_hud()
+	if cell._mutation_node != null and house_tree != null:
+		cell._mutation_node.reparent(house_tree)
 	if _stage_grafted_count >= CELLS_PER_STAGE:
 		if _current_stage < TOTAL_STAGES - 1:
 			_activate_stage(_current_stage + 1)
