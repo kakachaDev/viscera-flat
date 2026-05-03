@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bv3w0v2mhq0rw" path="res://assets/prefabs/base_house_clickable_area.tscn" id="2_rvslj"]
 [ext_resource type="PackedScene" uid="uid://3uvusa376in7" path="res://assets/prefabs/base_stat_progress.tscn" id="3_0bbpv"]
 [ext_resource type="Texture2D" uid="uid://tg38e5bhpicd" path="res://assets/sprites/house_tree.png" id="3_jlsqs"]
-[ext_resource type="Texture2D" uid="uid://dgmo3li88ly1j" path="res://assets/sprites/flower.png" id="4_mwfav"]
 [ext_resource type="Texture2D" uid="uid://36rx60j60ojo" path="res://assets/sprites/window.png" id="4_qmy6f"]
 [ext_resource type="Texture2D" uid="uid://bjsb1kdkrq17g" path="res://assets/sprites/window_indicator.png" id="5_mwfav"]
 [ext_resource type="Script" uid="uid://balt5inkmaub2" path="res://scripts/tooltip.gd" id="5_vcsgt"]
@@ -31,9 +30,8 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("cells", "card_tray", "hud_stage_label", "hud_grafted_label", "house_tree", "window_indicator")]
+[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("card_tray", "hud_stage_label", "hud_grafted_label", "house_tree", "window_indicator")]
 script = ExtResource("1_rvslj")
-cells = [NodePath("House/Parts/BaseHouseClickableArea"), NodePath("House/Parts/BaseHouseClickableArea2"), NodePath("House/Parts/BaseHouseClickableArea3"), NodePath("House/Parts/BaseHouseClickableArea4"), NodePath("House/Parts/BaseHouseClickableArea5"), NodePath("House/Parts/BaseHouseClickableArea6"), NodePath("House/Parts/BaseHouseClickableArea7"), NodePath("House/Parts/BaseHouseClickableArea8")]
 card_tray = NodePath("UI/Game/CardTray")
 hud_stage_label = NodePath("UI/Game/HUD/StageLabel")
 hud_grafted_label = NodePath("UI/Game/HUD/GraftedLabel")
@@ -55,43 +53,6 @@ position = Vector2(966, 1064)
 texture = ExtResource("3_jlsqs")
 offset = Vector2(0, -402.336)
 
-[node name="Flower" type="Sprite2D" parent="House/Домдерево" unique_id=756743346]
-visible = false
-position = Vector2(-380, -728)
-texture = ExtResource("4_mwfav")
-
-[node name="Flower3" type="Sprite2D" parent="House/Домдерево" unique_id=1942249206]
-visible = false
-position = Vector2(394, -663)
-rotation = -0.07769086
-scale = Vector2(0.68046665, 0.68046665)
-texture = ExtResource("4_mwfav")
-flip_h = true
-
-[node name="Flower4" type="Sprite2D" parent="House/Домдерево" unique_id=567543334]
-visible = false
-position = Vector2(244, -800)
-rotation = -0.36025333
-scale = Vector2(0.4538937, 0.4538937)
-texture = ExtResource("4_mwfav")
-flip_h = true
-
-[node name="Flower5" type="Sprite2D" parent="House/Домдерево" unique_id=890941388]
-visible = false
-position = Vector2(-412, -556)
-rotation = 2.6616573
-scale = Vector2(0.8250164, 0.8250164)
-texture = ExtResource("4_mwfav")
-flip_h = true
-flip_v = true
-
-[node name="Flower2" type="Sprite2D" parent="House/Домдерево" unique_id=1867284655]
-visible = false
-position = Vector2(355, -542)
-rotation = 0.84936666
-texture = ExtResource("4_mwfav")
-flip_h = true
-
 [node name="Window" type="Sprite2D" parent="House/Домдерево" unique_id=660361643]
 z_index = 1
 position = Vector2(-24, -239)
@@ -111,6 +72,7 @@ texture = ExtResource("5_mwfav")
 offset = Vector2(0, -105.37)
 
 [node name="Parts" type="Node2D" parent="House" unique_id=1027481682]
+y_sort_enabled = true
 
 [node name="BaseHouseClickableArea" parent="House/Parts" unique_id=75998111 instance=ExtResource("2_rvslj")]
 position = Vector2(713, 836)

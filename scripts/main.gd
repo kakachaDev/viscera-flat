@@ -194,7 +194,7 @@ func _process(delta: float) -> void:
 	if window_indicator == null:
 		return
 	window_indicator.scale.y = lerpf(window_indicator.scale.y, _window_scale_target, 5.0 * delta)
-	var target_color := Color(0.35, 0.35, 0.35).lerp(Color.MAGENTA, _window_color_target)
+	var target_color := Color(0.45, 0.459, 0.267, 1.0).lerp(Color.MAGENTA, _window_color_target)
 	window_indicator.modulate = window_indicator.modulate.lerp(target_color, 5.0 * delta)
 
 func _change_stat(new_stats) -> void:
