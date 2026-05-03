@@ -23,6 +23,7 @@ var _stats: Dictionary[GameEnums.StatType, float] = {
 var mutation_card_prefab: PackedScene
 
 var _active := true
+var _window_target: float = 0.5
 var _stats_changed := false
 
 var _mutation_data: Array[MutationPartData]
@@ -169,11 +170,14 @@ func _animate_house_tree(stage: int) -> void:
 	tween.tween_property(house_tree, "scale", Vector2(s, s), 0.3)
 
 func _update_window_indicator(stats: Dictionary) -> void:
+	_window_target = stats.get(GameEnums.StatType.Light, 50.0) / 100.0
+
+func _process(delta: float) -> void:
 	if window_indicator == null:
 		return
-	var t := stats.get(GameEnums.StatType.Moisture, 50.0) / 100.0
+	var t := lerpf(window_indicator.scale.y, _window_target, 5.0 * delta)
 	window_indicator.scale.y = t
-	window_indicator.modulate = Color.WHITE.lerp(Color.MAGENTA, t)
+	window_indicator.modulate = Color(0.35, 0.35, 0.35).lerp(Color.MAGENTA, t)
 
 func _change_stat(new_stats) -> void:
 	if new_stats == null:
