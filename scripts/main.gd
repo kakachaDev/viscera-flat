@@ -122,11 +122,11 @@ func _on_grafting_succeeded(cell: GraftCell) -> void:
 	_move_mutation_to_tree(cell)
 
 func _move_mutation_to_tree(cell: GraftCell) -> void:
-	var node := cell._mutation_node
+	var node := cell._mutation_node as Node2D
 	if node == null or house_tree == null:
 		return
-	var gpos := node.global_position
-	var grot := node.global_rotation
+	var gpos: Vector2 = node.global_position
+	var grot: float = node.global_rotation
 	node.get_parent().remove_child(node)
 	house_tree.add_child(node)
 	node.global_position = gpos
