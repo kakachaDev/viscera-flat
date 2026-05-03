@@ -229,6 +229,8 @@ func _on_mouse_exited() -> void:
 	_cancel_hold()
 
 func _update_tooltip() -> void:
+	if _part_data == null:
+		return
 	Tooltip.instance.set_graft_cell(_part_data, _state, _grafted_mutation)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
