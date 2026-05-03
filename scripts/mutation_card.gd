@@ -7,9 +7,14 @@ var _mutation: MutationPartData = null
 var _dragging := false
 var _drag_offset := Vector2.ZERO
 var _home_position := Vector2.ZERO
+var _hover_tween: Tween = null
 
 @onready var _title_label: Label = $VBox/Title
 @onready var _stats_label: RichTextLabel = $VBox/Stats
+
+func _ready() -> void:
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 
 func setup(mutation: MutationPartData) -> void:
 	_mutation = mutation
@@ -18,6 +23,22 @@ func setup(mutation: MutationPartData) -> void:
 
 func get_mutation() -> MutationPartData:
 	return _mutation
+
+# Call after positioning the card in the tray so hover and snap_back know where home is.
+func set_home(pos: Vector2) -> void:
+	_home_position = pos
+
+# Slide in from below the tray with optional delay for staggering.
+func animate_in(target_pos: Vector2, delay: float = 0.0) -> void:
+	_home_position = target_pos
+	position = Vector2(target_pos.x, 200.0)
+	modulate.a = 0.0
+	var tween := create_tween()
+	if delay > 0.0:
+		tween.tween_interval(delay)
+	tween.tween_property(self, "position", target_pos, 0.3) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween.parallel().tween_property(self, "modulate:a", 1.0, 0.2)
 
 func snap_back() -> void:
 	_dragging = false
@@ -61,7 +82,8 @@ func _gui_input(event: InputEvent) -> void:
 
 func _start_drag() -> void:
 	_dragging = true
-	_home_position = position
+	_kill_hover_tween()
+	position = _home_position  # snap out of hover offset before dragging
 	_drag_offset = get_global_mouse_position() - global_position
 	z_index = 100
 
@@ -73,3 +95,22 @@ func _end_drag() -> void:
 func _process(_delta: float) -> void:
 	if _dragging:
 		global_position = get_global_mouse_position() - _drag_offset
+
+func _on_mouse_entered() -> void:
+	if _dragging:
+		return
+	_kill_hover_tween()
+	_hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	_hover_tween.tween_property(self, "position:y", _home_position.y - 12.0, 0.12)
+
+func _on_mouse_exited() -> void:
+	if _dragging:
+		return
+	_kill_hover_tween()
+	_hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	_hover_tween.tween_property(self, "position:y", _home_position.y, 0.12)
+
+func _kill_hover_tween() -> void:
+	if _hover_tween and _hover_tween.is_valid():
+		_hover_tween.kill()
+	_hover_tween = null

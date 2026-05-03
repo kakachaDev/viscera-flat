@@ -65,17 +65,32 @@ func _deal_cards() -> void:
 	for child in card_tray.get_children():
 		child.queue_free()
 
-	var tray_width := card_tray.size.x if card_tray.size.x > 0 else 560.0
-	var total := CARD_WIDTH * CARDS_PER_STAGE + CARD_GAP * (CARDS_PER_STAGE - 1)
-	var start_x := maxf(8.0, (tray_width - total) / 2.0)
-
 	for i in CARDS_PER_STAGE:
 		var mutation := _mutation_data[randi() % _mutation_data.size()]
 		var card := mutation_card_prefab.instantiate() as MutationCard
-		card.position = Vector2(start_x + i * (CARD_WIDTH + CARD_GAP), 8.0)
 		card.setup(mutation)
 		card.card_dropped.connect(_on_card_dropped.bind(card))
 		card_tray.add_child(card)
+		card.animate_in(_card_slot_pos(i, CARDS_PER_STAGE), i * 0.08)
+
+func _relayout_cards() -> void:
+	var live: Array = card_tray.get_children().filter(
+		func(c): return not c.is_queued_for_deletion())
+	var n := live.size()
+	for i in n:
+		var card := live[i] as MutationCard
+		if card == null or card._dragging:
+			continue
+		var target := _card_slot_pos(i, n)
+		card.set_home(target)
+		var tw := card.create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		tw.tween_property(card, "position", target, 0.18)
+
+func _card_slot_pos(idx: int, total: int) -> Vector2:
+	var tray_width := card_tray.size.x if card_tray.size.x > 0 else 560.0
+	var row_width := CARD_WIDTH * total + CARD_GAP * (total - 1)
+	var start_x := maxf(8.0, (tray_width - row_width) / 2.0)
+	return Vector2(start_x + idx * (CARD_WIDTH + CARD_GAP), 8.0)
 
 func _on_card_dropped(mutation: MutationPartData, screen_pos: Vector2, card: MutationCard) -> void:
 	var stage_start := _current_stage * CELLS_PER_STAGE
@@ -87,6 +102,7 @@ func _on_card_dropped(mutation: MutationPartData, screen_pos: Vector2, card: Mut
 		if cell_rect.has_point(screen_pos):
 			cell.start_grafting(mutation)
 			card.queue_free()
+			_relayout_cards.call_deferred()
 			return
 	card.snap_back()
 
@@ -103,15 +119,13 @@ func _on_grafting_succeeded(cell: GraftCell) -> void:
 func _on_grafting_failed(_cell: GraftCell, _mutation: MutationPartData) -> void:
 	if mutation_card_prefab == null:
 		return
-	var tray_width := card_tray.size.x
-	var existing := card_tray.get_child_count()
-	var start_x := maxf(8.0, (tray_width - (CARD_WIDTH * CARDS_PER_STAGE + CARD_GAP * (CARDS_PER_STAGE - 1))) / 2.0)
 	var new_card := mutation_card_prefab.instantiate() as MutationCard
-	new_card.position = Vector2(start_x + existing * (CARD_WIDTH + CARD_GAP), 8.0)
 	var new_mutation := _mutation_data[randi() % _mutation_data.size()]
 	new_card.setup(new_mutation)
 	new_card.card_dropped.connect(_on_card_dropped.bind(new_card))
 	card_tray.add_child(new_card)
+	_relayout_cards()
+	new_card.animate_in(new_card._home_position)
 
 func _base_update_stats(delta: float) -> void:
 	if not _active:
