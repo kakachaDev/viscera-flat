@@ -1,0 +1,406 @@
+[gd_scene format=3 uid="uid://cwaddo2v7134g"]
+
+[ext_resource type="Texture2D" uid="uid://com2euhx7trkg" path="res://assets/sprites/background.png" id="1_cov1b"]
+[ext_resource type="Texture2D" uid="uid://ciw2tln75ii8m" path="res://assets/sprites/seed_closed.png" id="2_c2ias"]
+[ext_resource type="Texture2D" uid="uid://tg38e5bhpicd" path="res://assets/sprites/house_tree.png" id="3_l4e43"]
+[ext_resource type="Texture2D" uid="uid://36rx60j60ojo" path="res://assets/sprites/window.png" id="4_awckm"]
+[ext_resource type="Texture2D" uid="uid://bjsb1kdkrq17g" path="res://assets/sprites/window_indicator.png" id="5_7ahh7"]
+[ext_resource type="Texture2D" uid="uid://bd00nnwvrl1aa" path="res://assets/sprites/seed.png" id="6_yague"]
+
+[sub_resource type="Animation" id="Animation_cov1b"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5412914, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_c2ias"]
+resource_name = "seed"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0.5412914, -0.25, 0, 0.25, 0, 0.9656637, -0.08530271, 0, 0.08136396, 0, 0.5412914, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.51181626, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4e43"]
+_data = {
+&"RESET": SubResource("Animation_cov1b"),
+&"seed": SubResource("Animation_c2ias")
+}
+
+[sub_resource type="Animation" id="Animation_v3c7m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SeedClosed:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.9999993, -33.000004)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SeedClosed:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HouseTree:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HouseTree:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Seed:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Seed:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1562, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Seed2:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-26, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Seed2:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1431, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Camera2D:zoom:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Camera2D:zoom:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ll4r0"]
+resource_name = "start"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SeedClosed:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-0.9999993, -33.000004), Vector2(-0.9999993, 2192)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SeedClosed:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2666667, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1139), Vector2(0, 683)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HouseTree:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1e-05, -0.33333334, 0, 0, 0, 1, -0.16666667, -0.166665, 0, 0),
+"times": PackedFloat32Array(0, 2, 3.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HouseTree:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1e-05, -0.33333334, 0, 0, 0, 1, -0.16666667, -0.166665, 0, 0),
+"times": PackedFloat32Array(0, 2, 3.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Seed:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0, -12, -0.073333345, 0, 0, 0, -12, -0.0016666651, 0, 0, 0),
+"times": PackedFloat32Array(1.2666667, 2.4566667, 3)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Seed:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1562, -0.25, 0, 0.25, 0, 1388, -0.073333345, 29.000002, 0, 0, 1588, -0.0016666651, -33.333336, 0, 0),
+"times": PackedFloat32Array(1.2666667, 2.4566667, 3)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Seed2:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-26, -0.25, 0, 0.25, 0, -26, -0.08354994, 0, 0, 0),
+"times": PackedFloat32Array(3, 3.506558)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Seed2:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1431, -0.25, 0, 0.25, 0, 1257, -0.08354994, 29, 0, 0),
+"times": PackedFloat32Array(3, 3.506558)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Camera2D:zoom:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(2, 0, 0, 0.45500153, -0.22666669, 0.64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.2699909, 4)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Camera2D:zoom:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(2, 0, 0, 0.45500153, -0.22666669, 0.64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.2699909, 4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rip36"]
+_data = {
+&"RESET": SubResource("Animation_v3c7m"),
+&"start": SubResource("Animation_ll4r0")
+}
+
+[node name="Start" type="Node" unique_id=1476694498]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1471064502]
+position = Vector2(28, 614)
+texture = ExtResource("1_cov1b")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1504737108]
+zoom = Vector2(0.64, 0.64)
+
+[node name="SeedClosed" type="Sprite2D" parent="." unique_id=1356854587]
+position = Vector2(-0.9999993, -33.000004)
+rotation = 0.5412914
+scale = Vector2(0.3166011, 0.3166011)
+texture = ExtResource("2_c2ias")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SeedClosed" unique_id=535716322]
+libraries/ = SubResource("AnimationLibrary_l4e43")
+speed_scale = 0.351
+
+[node name="Start" type="AnimationPlayer" parent="." unique_id=2088900342]
+libraries/ = SubResource("AnimationLibrary_rip36")
+
+[node name="HouseTree" type="Sprite2D" parent="." unique_id=437455312]
+position = Vector2(0, 1319)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("3_l4e43")
+offset = Vector2(0, -402.675)
+
+[node name="Window" type="Sprite2D" parent="HouseTree" unique_id=1520095985]
+position = Vector2(-19, -271)
+texture = ExtResource("4_awckm")
+
+[node name="WindowIndicator" type="Sprite2D" parent="HouseTree/Window" unique_id=1582153593]
+self_modulate = Color(0.81336945, 0.55835754, 0.751362, 1)
+show_behind_parent = true
+position = Vector2(-1, -2)
+texture = ExtResource("5_7ahh7")
+
+[node name="Seed" type="Sprite2D" parent="." unique_id=1379535770]
+position = Vector2(-12, 1562)
+texture = ExtResource("2_c2ias")
+offset = Vector2(0, -82.235)
+
+[node name="Seed2" type="Sprite2D" parent="." unique_id=256500259]
+position = Vector2(-26, 1431)
+texture = ExtResource("6_yague")
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=1969165359]
+position = Vector2(28, 1600)
+texture = ExtResource("1_cov1b")
+region_enabled = true
+region_rect = Rect2(0, 1975.0381, 3849, 548.9619)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1808877173]
+
+[node name="Subs" type="Panel" parent="CanvasLayer" unique_id=1063785272]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -249.0
+offset_right = -8.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Text" type="Label" parent="CanvasLayer/Subs" unique_id=1819386431]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1875.0
+offset_top = -219.0
+offset_right = -37.0
+offset_bottom = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Какой-то текст."
+
+[node name="Next" type="Label" parent="CanvasLayer/Subs" unique_id=1889313741]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -301.0
+offset_top = -46.0
+offset_right = -24.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.6838336, 0.73602635, 1)
+theme_override_font_sizes/font_size = 32
+text = "Продолжить >"
+horizontal_alignment = 2
+vertical_alignment = 1
