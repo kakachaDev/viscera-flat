@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mvjm7ibxwnm2"
-path="res://.godot/imported/Лоза.png-46f08cf388866d627cf30c79d04ff3d9.ctex"
+path="res://.godot/imported/vine.png-dc123f69310e70f387197b5a2858bd01.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/mutations/vine.png"
-dest_files=["res://.godot/imported/Лоза.png-46f08cf388866d627cf30c79d04ff3d9.ctex"]
+dest_files=["res://.godot/imported/vine.png-dc123f69310e70f387197b5a2858bd01.ctex"]
 
 [params]
 

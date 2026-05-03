@@ -4,3 +4,4 @@
 
 [node name="mut_vine" type="Sprite2D" unique_id=100000001]
 texture = ExtResource("1_vine")
+offset = Vector2(-97.065, -37.72)

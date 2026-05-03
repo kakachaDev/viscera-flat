@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1xombwajr30o"
-path="res://.godot/imported/кисточка.png-039576983e4b9b0dfe865b7e593a9d75.ctex"
+path="res://.godot/imported/brush.png-f19cbd9fb52b09bcdb92e0410022a229.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/brush.png"
-dest_files=["res://.godot/imported/кисточка.png-039576983e4b9b0dfe865b7e593a9d75.ctex"]
+dest_files=["res://.godot/imported/brush.png-f19cbd9fb52b09bcdb92e0410022a229.ctex"]
 
 [params]
 

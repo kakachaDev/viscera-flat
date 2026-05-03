@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr8dlpg7q0hob"
-path="res://.godot/imported/крылышки.png-710341ac8c1836c116d38199b7a9e0ad.ctex"
+path="res://.godot/imported/wings.png-081f060a6041e16e7f0913501155c799.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/mutations/wings.png"
-dest_files=["res://.godot/imported/крылышки.png-710341ac8c1836c116d38199b7a9e0ad.ctex"]
+dest_files=["res://.godot/imported/wings.png-081f060a6041e16e7f0913501155c799.ctex"]
 
 [params]
 

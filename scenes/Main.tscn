@@ -28,9 +28,8 @@ expand_margin_top = 12.0
 expand_margin_right = 12.0
 expand_margin_bottom = 12.0
 
-[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("cells", "card_tray", "hud_stage_label", "hud_grafted_label")]
+[node name="Main" type="Node" unique_id=680549170 node_paths=PackedStringArray("card_tray", "hud_stage_label", "hud_grafted_label")]
 script = ExtResource("1_rvslj")
-cells = [NodePath("House/Parts/BaseHouseClickableArea"), NodePath("House/Parts/BaseHouseClickableArea2"), NodePath("House/Parts/BaseHouseClickableArea3"), NodePath("House/Parts/BaseHouseClickableArea4"), NodePath("House/Parts/BaseHouseClickableArea5"), NodePath("House/Parts/BaseHouseClickableArea6"), NodePath("House/Parts/BaseHouseClickableArea7"), NodePath("House/Parts/BaseHouseClickableArea8")]
 card_tray = NodePath("UI/Game/CardTray")
 hud_stage_label = NodePath("UI/Game/HUD/StageLabel")
 hud_grafted_label = NodePath("UI/Game/HUD/GraftedLabel")
@@ -57,24 +56,28 @@ position = Vector2(784, 810)
 
 [node name="BaseHouseClickableArea2" parent="House/Parts" unique_id=1515508204 instance=ExtResource("2_rvslj")]
 position = Vector2(1151, 739)
+mirrored = true
 
 [node name="BaseHouseClickableArea3" parent="House/Parts" unique_id=1840358301 instance=ExtResource("2_rvslj")]
 position = Vector2(639, 569)
 
 [node name="BaseHouseClickableArea4" parent="House/Parts" unique_id=1526822850 instance=ExtResource("2_rvslj")]
 position = Vector2(1276, 505)
+mirrored = true
 
 [node name="BaseHouseClickableArea5" parent="House/Parts" unique_id=1101391252 instance=ExtResource("2_rvslj")]
 position = Vector2(783, 395)
 
 [node name="BaseHouseClickableArea6" parent="House/Parts" unique_id=324784114 instance=ExtResource("2_rvslj")]
 position = Vector2(1039, 444)
+mirrored = true
 
 [node name="BaseHouseClickableArea7" parent="House/Parts" unique_id=118161282 instance=ExtResource("2_rvslj")]
 position = Vector2(603, 272)
 
 [node name="BaseHouseClickableArea8" parent="House/Parts" unique_id=1300598298 instance=ExtResource("2_rvslj")]
 position = Vector2(1182, 241)
+mirrored = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=457209735]
 

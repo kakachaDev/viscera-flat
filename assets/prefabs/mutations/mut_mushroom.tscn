@@ -4,3 +4,4 @@
 
 [node name="mut_mushroom" type="Sprite2D" unique_id=100000002]
 texture = ExtResource("1_mushroom")
+offset = Vector2(-120.925, -46.59)

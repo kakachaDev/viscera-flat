@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8iul8qljxi02"
-path="res://.godot/imported/гриб.png-f83d7350054fc28358c67acbe0d30eda.ctex"
+path="res://.godot/imported/mushroom.png-01002aded22e035dbc2def8bddae6ed1.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/mutations/mushroom.png"
-dest_files=["res://.godot/imported/гриб.png-f83d7350054fc28358c67acbe0d30eda.ctex"]
+dest_files=["res://.godot/imported/mushroom.png-01002aded22e035dbc2def8bddae6ed1.ctex"]
 
 [params]
 

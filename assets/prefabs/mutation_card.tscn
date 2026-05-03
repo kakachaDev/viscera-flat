@@ -12,6 +12,14 @@ offset_right = 195.0
 offset_bottom = 257.0
 script = ExtResource("1_mutcard")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=838906401]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 193.0
+offset_bottom = 255.0
+color = Color(0, 0, 0, 1)
+
 [node name="background" type="TextureRect" parent="." unique_id=1407364634]
 layout_mode = 0
 offset_right = 389.0

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhgnuv6jfffsc"
-path="res://.godot/imported/колючки.png-2443df013c0eee7bd6500c59f4259cf2.ctex"
+path="res://.godot/imported/thorns.png-e1c56d52c34823f77cf77f4b284493cd.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/mutations/thorns.png"
-dest_files=["res://.godot/imported/колючки.png-2443df013c0eee7bd6500c59f4259cf2.ctex"]
+dest_files=["res://.godot/imported/thorns.png-e1c56d52c34823f77cf77f4b284493cd.ctex"]
 
 [params]
 

@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://d6zom9rst4t3"]
+[gd_scene format=3 uid="uid://d60onarst4t3"]
 
 [ext_resource type="Texture2D" uid="uid://c4golardic2av" path="res://assets/sprites/mutations/tuber.png" id="1_tuber"]
 
 [node name="mut_tuber" type="Sprite2D" unique_id=100000003]
 texture = ExtResource("1_tuber")
+offset = Vector2(-160.285, -59.9)

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjsb1kdkrq17g"
-path="res://.godot/imported/индикатор окна.png-de3580d8c74b3fe73d39415b1ef14310.ctex"
+path="res://.godot/imported/window_indicator.png-1b15d071d2f5dd9c52ae8cb600c58c6d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/window_indicator.png"
-dest_files=["res://.godot/imported/индикатор окна.png-de3580d8c74b3fe73d39415b1ef14310.ctex"]
+dest_files=["res://.godot/imported/window_indicator.png-1b15d071d2f5dd9c52ae8cb600c58c6d.ctex"]
 
 [params]
 
