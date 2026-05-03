@@ -6,6 +6,7 @@ signal card_dropped(mutation: MutationPartData, screen_pos: Vector2)
 var _mutation: MutationPartData = null
 var _dragging := false
 var _drag_offset := Vector2.ZERO
+var _drag_target := Vector2.ZERO
 var _home_position := Vector2.ZERO
 var _hover_tween: Tween = null
 
@@ -23,6 +24,7 @@ var _hover_tween: Tween = null
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	pivot_offset = size / 2.0
 
 func setup(mutation: MutationPartData) -> void:
 	_mutation = mutation
@@ -51,6 +53,8 @@ func snap_back() -> void:
 	z_index = 0
 	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(self, "position", _home_position, 0.2)
+	tween.parallel().tween_property(self, "scale", Vector2.ONE, 0.2)
+	tween.parallel().tween_property(self, "rotation", 0.0, 0.15)
 
 func _update_display() -> void:
 	_title_label.text = _mutation.description
@@ -132,30 +136,39 @@ func _start_drag() -> void:
 	_kill_hover_tween()
 	position = _home_position
 	_drag_offset = get_global_mouse_position() - global_position
+	_drag_target = global_position
 	z_index = 100
+	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(self, "scale", Vector2(0.85, 0.85), 0.12)
 
 func _end_drag() -> void:
 	_dragging = false
 	z_index = 0
 	card_dropped.emit(_mutation, get_global_mouse_position())
 
-func _process(_delta: float) -> void:
-	if _dragging:
-		global_position = get_global_mouse_position() - _drag_offset
+func _process(delta: float) -> void:
+	if not _dragging:
+		return
+	_drag_target = get_global_mouse_position() - _drag_offset
+	global_position = global_position.lerp(_drag_target, minf(1.0, 15.0 * delta))
+	var dx := _drag_target.x - global_position.x
+	rotation = lerpf(rotation, clampf(dx * 0.012, -0.4, 0.4), minf(1.0, 10.0 * delta))
 
 func _on_mouse_entered() -> void:
 	if _dragging:
 		return
 	_kill_hover_tween()
-	_hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	_hover_tween.tween_property(self, "position:y", _home_position.y - 12.0, 0.12)
+	_hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	_hover_tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.15)
+	_hover_tween.parallel().tween_property(self, "position:y", _home_position.y - 20.0, 0.15)
 
 func _on_mouse_exited() -> void:
 	if _dragging:
 		return
 	_kill_hover_tween()
 	_hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	_hover_tween.tween_property(self, "position:y", _home_position.y, 0.12)
+	_hover_tween.tween_property(self, "scale", Vector2.ONE, 0.15)
+	_hover_tween.parallel().tween_property(self, "position:y", _home_position.y, 0.12)
 
 func _kill_hover_tween() -> void:
 	if _hover_tween and _hover_tween.is_valid():
