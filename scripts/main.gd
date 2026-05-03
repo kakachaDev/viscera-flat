@@ -29,7 +29,8 @@ var _impacts: Dictionary
 var _current_stage: int = 0
 var _stage_grafted_count: int = 0
 
-const CARD_WIDTH := 160.0
+const CARD_WIDTH := 195.0
+const CARD_HEIGHT := 257.0
 const CARD_GAP := 16.0
 
 func _ready() -> void:
@@ -88,9 +89,10 @@ func _relayout_cards() -> void:
 
 func _card_slot_pos(idx: int, total: int) -> Vector2:
 	var tray_width := card_tray.size.x if card_tray.size.x > 0 else 560.0
+	var tray_height := card_tray.size.y if card_tray.size.y > 0 else 128.0
 	var row_width := CARD_WIDTH * total + CARD_GAP * (total - 1)
 	var start_x := maxf(8.0, (tray_width - row_width) / 2.0)
-	return Vector2(start_x + idx * (CARD_WIDTH + CARD_GAP), 8.0)
+	return Vector2(start_x + idx * (CARD_WIDTH + CARD_GAP), -(CARD_HEIGHT - tray_height))
 
 func _on_card_dropped(mutation: MutationPartData, screen_pos: Vector2, card: MutationCard) -> void:
 	var stage_start := _current_stage * CELLS_PER_STAGE
