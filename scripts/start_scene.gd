@@ -3,13 +3,13 @@ extends Node
 enum Phase { FADE_IN, TEXT_1, ANIM_PLAY, TEXT_2, FADE_OUT }
 
 const TEXT_1 := "Современные технологии позволяют выращивать дома прямо из растений"
-const TEXT_2 := "А вот какой дом по итогу вырастет — зависит от вас"
+const TEXT_2 := "А вот какой дом по итогу вырастет - зависит от вас. Прививайте новые мутации, чтобы получить лучший дом в истории мутаций!"
 const CHAR_DELAY := 0.035
 
 var _phase := Phase.FADE_IN
 var _overlay: ColorRect
 var _subs: Panel
-var _lbl_text: Label
+var _lbl_text: RichTextLabel
 var _lbl_next: Label
 var _anim_main: AnimationPlayer
 var _anim_seed: AnimationPlayer

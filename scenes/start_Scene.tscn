@@ -155,7 +155,7 @@ tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.64, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/10/type = "bezier"
@@ -166,7 +166,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.64, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 
@@ -312,7 +312,7 @@ position = Vector2(28, 614)
 texture = ExtResource("1_cov1b")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1504737108]
-zoom = Vector2(0.64, 0.64)
+zoom = Vector2(2, 2)
 
 [node name="SeedClosed" type="Sprite2D" parent="." unique_id=1356854587]
 position = Vector2(-0.9999993, -33.000004)
@@ -372,7 +372,7 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Text" type="Label" parent="CanvasLayer/Subs" unique_id=1819386431]
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/Subs" unique_id=267785935]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -382,11 +382,11 @@ anchor_bottom = 1.0
 offset_left = -1875.0
 offset_top = -219.0
 offset_right = -37.0
-offset_bottom = -66.0
+offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "Какой-то текст."
+theme_override_font_sizes/normal_font_size = 32
+text = "К"
 
 [node name="Next" type="Label" parent="CanvasLayer/Subs" unique_id=1889313741]
 layout_mode = 1
@@ -401,7 +401,7 @@ offset_right = -24.0
 offset_bottom = -12.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0.6838336, 0.73602635, 1)
+theme_override_colors/font_color = Color(1.347661e-06, 0.8981479, 0.86848855, 1)
 theme_override_font_sizes/font_size = 32
 text = "Продолжить >"
 horizontal_alignment = 2
